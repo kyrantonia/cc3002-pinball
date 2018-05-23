@@ -1,7 +1,10 @@
 package logic.gameelements.bumper;
 
 import controller.Game;
+import logic.bonus.JackPotBonus;
 import logic.gameelements.AbstractHittable;
+
+import java.util.Observer;
 
 abstract public class AbstractBumper extends AbstractHittable implements Bumper {
     private int defaultScore;
@@ -9,9 +12,9 @@ abstract public class AbstractBumper extends AbstractHittable implements Bumper 
     private int hitsToUpgrade;
     private int upgradedScore;
     private boolean isUpgrade;
-    
 
-    public AbstractBumper(int score, int hitsToUpgrade,int upgradedScore){
+
+    AbstractBumper(int score, int hitsToUpgrade,int upgradedScore){
         super(score);
         this.hitsToUpgrade = hitsToUpgrade;
         this.upgradedScore = upgradedScore;
@@ -23,11 +26,12 @@ abstract public class AbstractBumper extends AbstractHittable implements Bumper 
     public int hit() {
         int increment=this.getScore();
         Game.getInstance().increaseScore(increment);
-        if(this.remainingHitsToUpgrade()==0) {
+        if(this.remainingHitsToUpgrade()==0 && !isUpgraded()) {
             this.upgrade();
         }
         return increment;
     }
+
     public int remainingHitsToUpgrade(){
         this.hitsToUpgrade = Math.max(0,hitsToUpgrade-1);
         return hitsToUpgrade;
@@ -36,14 +40,18 @@ abstract public class AbstractBumper extends AbstractHittable implements Bumper 
         return isUpgrade;
     }
 
-    public int getUpgradedScore(){
+    private int getUpgradedScore(){
         return this.upgradedScore;
     }
+
+
 
     @Override
     public void upgrade() {
         score = this.getUpgradedScore();
         isUpgrade = true;
+        setChanged();
+        notifyObservers();
     }
 
     @Override
@@ -54,4 +62,6 @@ abstract public class AbstractBumper extends AbstractHittable implements Bumper 
     }
 
 
+    private class JackPotBonus {
+    }
 }
