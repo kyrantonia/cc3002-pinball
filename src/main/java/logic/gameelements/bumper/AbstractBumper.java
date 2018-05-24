@@ -1,10 +1,7 @@
 package logic.gameelements.bumper;
 
 import controller.Game;
-import logic.bonus.JackPotBonus;
 import logic.gameelements.AbstractHittable;
-
-import java.util.Observer;
 
 abstract public class AbstractBumper extends AbstractHittable implements Bumper {
     private int defaultScore;
@@ -61,7 +58,4 @@ abstract public class AbstractBumper extends AbstractHittable implements Bumper 
         isUpgrade = true;
     }
 
-
-    private class JackPotBonus {
-    }
 }

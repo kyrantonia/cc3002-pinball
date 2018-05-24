@@ -1,10 +1,16 @@
 package logic.bonus;
 
-import java.util.Observable;
-
 public class DropTargetBonus extends AbstractBonus{
-    @Override
-    public void update(Observable observable, Object o) {
+    private static DropTargetBonus instance;
+    int timesTriggered;
+    private DropTargetBonus(){
+        super();
+    }
+    public static DropTargetBonus getInstance(){
+        if(instance==null){
+            instance= new DropTargetBonus();
+        }
+        return instance;
 
     }
 }

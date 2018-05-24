@@ -1,11 +1,16 @@
 package logic.bonus;
 
-
-import java.util.Observable;
-
 public class ExtraBallBonus extends AbstractBonus {
-    @Override
-    public void update(Observable observable, Object o) {
+    private static ExtraBallBonus instance;
+    int timesTriggered;
+    private ExtraBallBonus(){
+        super();
+    }
+    public static ExtraBallBonus getInstance(){
+        if(instance==null){
+            instance= new ExtraBallBonus();
+        }
+        return instance;
 
     }
 }

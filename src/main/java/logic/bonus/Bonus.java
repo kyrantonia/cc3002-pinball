@@ -13,7 +13,7 @@ import java.util.Observer;
  * @see JackPotBonus
  * @see DropTargetBonus
  */
-public interface Bonus extends Observer {
+public interface Bonus  {
     /**
      * Gets the number of times the bonus has been triggered.
      *
@@ -28,6 +28,4 @@ public interface Bonus extends Observer {
      */
     void trigger(Game game);
 
-    @Override
-    void update(Observable observable, Object o);
 }

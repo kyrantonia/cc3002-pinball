@@ -13,9 +13,14 @@ abstract public class AbstractTarget extends AbstractHittable implements Target 
     public int hit() {
         int increment=this.getScore();
         Game.getInstance().increaseScore(increment);
+        setChanged();
+        notifyObservers();
+        deactivate();
         return increment;
     }
-
+    public void deactivate(){
+        this.isActive=false;
+    }
     @Override
     public boolean isActive() {
         return isActive;

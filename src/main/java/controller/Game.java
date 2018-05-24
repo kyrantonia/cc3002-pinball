@@ -29,9 +29,6 @@ public class Game implements Observer {
     private Game()  {
         this.currentScore = 0;
         this.numberOfBalls = 5;
-        JackPotBonus = new JackPotBonus();
-        ExtraBallBonus= new ExtraBallBonus();
-        DropTargetBonus=new DropTargetBonus();
         table =new NullTable();
     }
 
@@ -93,7 +90,8 @@ public class Game implements Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-        System.out.printf("me notificaron soy game");
+        System.out.printf("me notificaron soy game "+ observable+" "+o);
+
     }
 
     public static void main(String[] args) {
