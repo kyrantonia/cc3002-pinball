@@ -1,5 +1,7 @@
 package logic.bonus;
 
+import controller.Game;
+
 public class ExtraBallBonus extends AbstractBonus {
     private static ExtraBallBonus instance;
     int timesTriggered;
@@ -12,5 +14,10 @@ public class ExtraBallBonus extends AbstractBonus {
         }
         return instance;
 
+    }
+
+    @Override
+    public void trigger(Game game) {
+        Game.getInstance().increaseNumberOfBalls(1);
     }
 }

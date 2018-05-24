@@ -80,7 +80,7 @@ public class Game implements Observer {
         return numberOfBalls;
     }
 
-    public void increaaseNumberOfBalls(int increment) {
+    public void increaseNumberOfBalls(int increment) {
         this.numberOfBalls += increment;
     }
 

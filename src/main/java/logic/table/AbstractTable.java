@@ -87,12 +87,16 @@ public abstract class AbstractTable extends Observable implements logic.table.Ta
 
     @Override
     public void resetDropTargets() {
-
+        for(Target target: this.getTargets()){
+            target.reset();
+        }
     }
 
     @Override
     public void upgradeAllBumpers() {
-
+        for(Bumper bumper: this.getBumpers()){
+            bumper.upgrade();
+        }
     }
     @Override
     public void update(Observable observable, Object o) {

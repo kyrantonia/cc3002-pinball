@@ -15,10 +15,7 @@ abstract public class AbstractBonus implements Bonus {
     public void increaseTimesTriggered(){
         this.timesTriggered += 1;
     }
-    @Override
-    public void trigger(Game game) {
 
-    }
 
 
 

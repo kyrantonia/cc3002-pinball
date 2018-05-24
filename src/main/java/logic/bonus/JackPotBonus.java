@@ -1,5 +1,7 @@
 package logic.bonus;
 
+import controller.Game;
+
 public class JackPotBonus extends AbstractBonus {
 
     private static JackPotBonus instance;
@@ -12,5 +14,10 @@ public class JackPotBonus extends AbstractBonus {
             instance= new JackPotBonus();
         }
         return instance;
+    }
+
+    @Override
+    public void trigger(Game game) {
+        Game.getInstance().increaseScore(100000);
     }
 }
