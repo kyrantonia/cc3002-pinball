@@ -19,5 +19,6 @@ public class JackPotBonus extends AbstractBonus {
     @Override
     public void trigger(Game game) {
         Game.getInstance().increaseScore(100000);
+        increaseTimesTriggered();
     }
 }

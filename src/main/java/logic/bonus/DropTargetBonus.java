@@ -21,5 +21,6 @@ public class DropTargetBonus extends AbstractBonus{
     public void trigger(Game game) {
         Game.getInstance().increaseScore(1000000);
         Game.getInstance().getTable().upgradeAllBumpers();
+        increaseTimesTriggered();
     }
 }
