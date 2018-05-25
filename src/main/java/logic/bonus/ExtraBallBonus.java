@@ -18,7 +18,7 @@ public class ExtraBallBonus extends AbstractBonus {
 
     @Override
     public void trigger(Game game) {
-        Game.getInstance().increaseNumberOfBalls(1);
+        game.increaseNumberOfBalls(1);
         increaseTimesTriggered();
     }
 }

@@ -2,8 +2,9 @@ package logic.gameelements.target;
 
 import controller.Game;
 import logic.gameelements.AbstractHittable;
+import logic.gameelements.GameElement;
 
-abstract public class AbstractTarget extends AbstractHittable implements Target {
+abstract public class AbstractTarget extends AbstractHittable implements Target,GameElement {
     private boolean isActive;
     AbstractTarget(int score) {
         super(score);
@@ -11,13 +12,20 @@ abstract public class AbstractTarget extends AbstractHittable implements Target 
     }
     @Override
     public int hit() {
-        int increment=this.getScore();
-        Game.getInstance().increaseScore(increment);
-        setChanged();
-        notifyObservers();
-        deactivate();
+        int increment=0;
+        if (isActive()){
+            increment=this.getScore();
+            Game.getInstance().increaseScore(increment);
+            setChanged();
+            notifyObservers();
+            invokeBonus();
+            deactivate();
+        }
         return increment;
     }
+
+    protected abstract void invokeBonus();
+
     public void deactivate(){
         this.isActive=false;
     }

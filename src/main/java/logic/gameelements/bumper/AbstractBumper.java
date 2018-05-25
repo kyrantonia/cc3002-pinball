@@ -1,9 +1,11 @@
 package logic.gameelements.bumper;
 
 import controller.Game;
+import logic.bonus.ExtraBallBonus;
 import logic.gameelements.AbstractHittable;
+import logic.gameelements.GameElement;
 
-abstract public class AbstractBumper extends AbstractHittable implements Bumper {
+abstract public class AbstractBumper extends AbstractHittable implements Bumper, GameElement {
     private int defaultScore;
     private int defaultHitsToUpgrade;
     private int hitsToUpgrade;
@@ -25,6 +27,7 @@ abstract public class AbstractBumper extends AbstractHittable implements Bumper 
         Game.getInstance().increaseScore(increment);
         if(this.remainingHitsToUpgrade()==0 && !isUpgraded()) {
             this.upgrade();
+            this.invokeBonus();
         }
         return increment;
     }
@@ -40,7 +43,9 @@ abstract public class AbstractBumper extends AbstractHittable implements Bumper 
     private int getUpgradedScore(){
         return this.upgradedScore;
     }
-
+    void invokeBonus(){
+        Game.getInstance().getExtraBallBonus().trigger(Game.getInstance());
+    }
     @Override
     public void upgrade() {
         score = this.getUpgradedScore();

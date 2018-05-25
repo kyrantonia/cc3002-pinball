@@ -5,11 +5,14 @@ import logic.bonus.DropTargetBonus;
 import logic.bonus.ExtraBallBonus;
 import logic.bonus.JackPotBonus;
 import logic.gameelements.bumper.Bumper;
+import logic.gameelements.target.DropTarget;
 import logic.gameelements.target.Target;
 import logic.table.FullPlayableTable;
 import logic.table.Table;
 import logic.table.NullTable;
-
+import logic.bonus.DropTargetBonus;
+import logic.bonus.ExtraBallBonus;
+import logic.bonus.JackPotBonus;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -21,9 +24,9 @@ import java.util.Observer;
 public class Game implements Observer {
     private int currentScore;
     private int numberOfBalls;
-    private Bonus JackPotBonus;
-    private Bonus ExtraBallBonus;
-    private Bonus DropTargetBonus;
+    private JackPotBonus JackPotBonus;
+    private ExtraBallBonus ExtraBallBonus;
+    private DropTargetBonus DropTargetBonus;
     private static Game uniqueInstance;
     private Table table;
     private Game()  {
@@ -32,16 +35,19 @@ public class Game implements Observer {
         table =new NullTable();
     }
 
-    public Bonus getJackPotBonus() {
-        return JackPotBonus;
+    public JackPotBonus getJackPotBonus() {
+        System.out.printf("JackPotBonus");
+        return JackPotBonus.getInstance();
     }
 
-    public Bonus getDropTargetBonus() {
-        return DropTargetBonus;
+    public DropTargetBonus getDropTargetBonus() {
+        System.out.printf("DropTargetBonus");
+        return DropTargetBonus.getInstance();
     }
 
-    public Bonus getExtraBallBonus() {
-        return ExtraBallBonus;
+    public ExtraBallBonus getExtraBallBonus() {
+        System.out.printf("Extra Ball Bonus");
+        return ExtraBallBonus.getInstance();
     }
 
     public static Game getInstance(){
@@ -90,7 +96,7 @@ public class Game implements Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-        System.out.printf("me notificaron soy game "+ observable+" "+o);
+        //System.out.printf("me notificaron soy game "+ observable+" "+o);
 
     }
 

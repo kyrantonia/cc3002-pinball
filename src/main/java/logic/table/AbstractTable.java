@@ -20,7 +20,7 @@ public abstract class AbstractTable extends Observable implements logic.table.Ta
     int numberOfSpotTargets;
     int numberOfDropTargets;
     HittableFactory hittableFactory;
-
+    boolean isPlayable;
 
 
     public AbstractTable(String name, int numberOfBumpers, double prob, int numberOfSpotTargets, int numberOfDropTargets){
@@ -100,14 +100,14 @@ public abstract class AbstractTable extends Observable implements logic.table.Ta
     }
     @Override
     public void update(Observable observable, Object o) {
-        System.out.println("me notificaron soy table "+o+" "+observable);
+        //System.out.println("me notificaron soy table "+o+" "+observable);
         setChanged();
         notifyObservers();
     }
 
     @Override
     public boolean isPlayableTable() {
-        return false;
+        return isPlayable;
     }
     public void addObserver(){
         addObserver(Game.getInstance());
