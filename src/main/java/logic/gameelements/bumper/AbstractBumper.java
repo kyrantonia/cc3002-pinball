@@ -1,11 +1,10 @@
 package logic.gameelements.bumper;
 
 import controller.Game;
-import logic.bonus.ExtraBallBonus;
 import logic.gameelements.AbstractHittable;
-import logic.gameelements.GameElement;
+import logic.table.Visitor;
 
-abstract public class AbstractBumper extends AbstractHittable implements Bumper, GameElement {
+abstract public class AbstractBumper extends AbstractHittable implements Bumper {
     private int defaultScore;
     private int defaultHitsToUpgrade;
     private int hitsToUpgrade;
@@ -17,15 +16,20 @@ abstract public class AbstractBumper extends AbstractHittable implements Bumper,
         super(score);
         this.hitsToUpgrade = hitsToUpgrade;
         this.upgradedScore = upgradedScore;
-        this.isUpgrade=false;
-        this.defaultScore=score;
-        this.defaultHitsToUpgrade=hitsToUpgrade;
+        this.isUpgrade = false;
+        this.defaultScore = score;
+        this.defaultHitsToUpgrade = hitsToUpgrade;
     }
-
-    public int hit() {
+    public int hit(){
+        int increment=this.getScore();
+        setChanged();
+        notifyObservers(this);
+        return increment;
+    }
+    public int hit1() {
         int increment=this.getScore();
         Game.getInstance().increaseScore(increment);
-        if(this.remainingHitsToUpgrade()==0 && !isUpgraded()) {
+        if(this.remainingHitsToUpgrade()== 0 && !isUpgraded()) {
             this.upgrade();
             this.invokeBonus();
         }
@@ -43,7 +47,7 @@ abstract public class AbstractBumper extends AbstractHittable implements Bumper,
     private int getUpgradedScore(){
         return this.upgradedScore;
     }
-    void invokeBonus(){
+    public void invokeBonus(){
         Game.getInstance().getExtraBallBonus().trigger(Game.getInstance());
     }
     @Override
@@ -51,16 +55,18 @@ abstract public class AbstractBumper extends AbstractHittable implements Bumper,
         score = this.getUpgradedScore();
         isUpgrade = true;
         setChanged();
-        notifyObservers();
+        notifyObservers(this);
     }
 
     @Override
     public void downgrade() {
         this.score = this.defaultScore;
-        this.hitsToUpgrade=defaultHitsToUpgrade;
+        this.hitsToUpgrade = defaultHitsToUpgrade;
         isUpgrade = true;
     }
 
-
+    public void accept(Visitor visitor) {
+        visitor.visitBumper(this);
+    }
 
 }

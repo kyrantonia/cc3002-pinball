@@ -2,9 +2,9 @@ package logic.gameelements.target;
 
 import controller.Game;
 import logic.gameelements.AbstractHittable;
-import logic.gameelements.GameElement;
+import logic.table.Visitor;
 
-abstract public class AbstractTarget extends AbstractHittable implements Target,GameElement {
+abstract public class AbstractTarget extends AbstractHittable implements Target {
     private boolean isActive;
     AbstractTarget(int score) {
         super(score);
@@ -15,16 +15,24 @@ abstract public class AbstractTarget extends AbstractHittable implements Target,
         int increment=0;
         if (isActive()){
             increment=this.getScore();
+            setChanged();
+            notifyObservers(this);
+        }
+        return increment;
+    }
+    public int hit1() {
+        int increment=0;
+        if (isActive()){
+            increment=this.getScore();
             Game.getInstance().increaseScore(increment);
             setChanged();
-            notifyObservers();
+            notifyObservers(this);
             invokeBonus();
             deactivate();
         }
         return increment;
     }
 
-    protected abstract void invokeBonus();
 
     public void deactivate(){
         this.isActive=false;
@@ -37,6 +45,11 @@ abstract public class AbstractTarget extends AbstractHittable implements Target,
     @Override
     public void reset() {
         this.isActive=true;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visitTarget(this);
     }
 
 }

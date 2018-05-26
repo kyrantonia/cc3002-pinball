@@ -2,7 +2,6 @@ package logic.gameelements.target;
 
 
 import controller.Game;
-import controller.Visitor;
 
 public class SpotTarget extends AbstractTarget {
 
@@ -11,10 +10,7 @@ public class SpotTarget extends AbstractTarget {
     }
 
     @Override
-    public void accept(Visitor visitor) {
-        visitor.visitSpotTarget(this);
-    }
-    protected void invokeBonus(){
+    public void invokeBonus(){
         Game.getInstance().getJackPotBonus().trigger(Game.getInstance());
     }
 }

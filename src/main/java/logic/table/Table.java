@@ -64,5 +64,4 @@ public interface Table extends Observer {
      */
     boolean isPlayableTable();
 
-    void addObserver();
 }

@@ -5,13 +5,12 @@ import logic.gameelements.ConcreteHittableFactory;
 import logic.gameelements.Hittable;
 import logic.gameelements.HittableFactory;
 import logic.gameelements.bumper.Bumper;
-import logic.gameelements.bumper.KickerBumper;
 import logic.gameelements.target.Target;
 import java.util.Observable;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractTable extends Observable implements logic.table.Table {
+public abstract class AbstractTable implements Table,Visitor {
     ArrayList<Bumper> bumpers;
     ArrayList<Target> targets;
     String name;
@@ -101,15 +100,34 @@ public abstract class AbstractTable extends Observable implements logic.table.Ta
     @Override
     public void update(Observable observable, Object o) {
         //System.out.println("me notificaron soy table "+o+" "+observable);
-        setChanged();
-        notifyObservers();
+        ((Hittable)o).accept(this);
+        //setChanged();
+        //notifyObservers();
     }
 
     @Override
     public boolean isPlayableTable() {
         return isPlayable;
     }
-    public void addObserver(){
-        addObserver(Game.getInstance());
+
+    @Override
+    public void visitTarget(Target target) {
+        int increment=target.getScore();
+        Game.getInstance().increaseScore(increment);
+
+        target.invokeBonus();
+        target.deactivate();
+        System.out.printf("holi soy "+target);
+    }
+
+    @Override
+    public void visitBumper(Bumper bumper) {
+        int increment=bumper.getScore();
+        Game.getInstance().increaseScore(increment);
+        if(bumper.remainingHitsToUpgrade()== 0 && !bumper.isUpgraded()) {
+            bumper.upgrade();
+            bumper.invokeBonus();
+        }
+        System.out.printf("holi soy "+bumper);
     }
 }

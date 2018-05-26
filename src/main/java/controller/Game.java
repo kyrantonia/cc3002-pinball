@@ -1,27 +1,21 @@
 package controller;
 
-import logic.bonus.Bonus;
 import logic.bonus.DropTargetBonus;
 import logic.bonus.ExtraBallBonus;
 import logic.bonus.JackPotBonus;
+import logic.gameelements.Hittable;
 import logic.gameelements.bumper.Bumper;
-import logic.gameelements.target.DropTarget;
 import logic.gameelements.target.Target;
 import logic.table.FullPlayableTable;
 import logic.table.Table;
 import logic.table.NullTable;
-import logic.bonus.DropTargetBonus;
-import logic.bonus.ExtraBallBonus;
-import logic.bonus.JackPotBonus;
-import java.util.Observable;
-import java.util.Observer;
 
 /**
  * Game logic controller class.
  *
  * @author Juan-Pablo Silva
  */
-public class Game implements Observer {
+public class Game {
     private int currentScore;
     private int numberOfBalls;
     private JackPotBonus JackPotBonus;
@@ -64,9 +58,8 @@ public class Game implements Observer {
         this.table =table;
         addObserverBumper();
         addObseverTarget();
-        getTable().addObserver();
-
     }
+
     public void addObserverBumper(){
         for(Bumper b: Game.getInstance().table.getBumpers()){
             b.addObserver();
@@ -81,7 +74,6 @@ public class Game implements Observer {
         return table;
     }
 
-
     public int getNumberOfBalls() {
         return numberOfBalls;
     }
@@ -94,11 +86,6 @@ public class Game implements Observer {
         this.currentScore += increment;
     }
 
-    @Override
-    public void update(Observable observable, Object o) {
-        //System.out.printf("me notificaron soy game "+ observable+" "+o);
-
-    }
 
     public static void main(String[] args) {
         Game.getInstance();

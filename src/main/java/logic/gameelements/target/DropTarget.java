@@ -1,7 +1,6 @@
 package logic.gameelements.target;
 
 import controller.Game;
-import controller.Visitor;
 
 public class DropTarget extends AbstractTarget {
 
@@ -10,11 +9,7 @@ public class DropTarget extends AbstractTarget {
     }
 
     @Override
-    public void accept(Visitor visitor) {
-        visitor.visitDropTarget(this);
-    }
-
-    protected void invokeBonus(){
+    public void invokeBonus(){
         Game.getInstance().getDropTargetBonus().trigger(Game.getInstance());
     }
 }

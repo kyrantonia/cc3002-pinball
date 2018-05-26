@@ -1,5 +1,8 @@
 package logic.gameelements;
 
+
+import logic.table.Visitor;
+
 /**
  * Interface that represents a hittable object.
  *
@@ -26,4 +29,6 @@ public interface Hittable {
     int getScore();
 
     void addObserver();
+
+    public void accept(Visitor visitor);
 }
