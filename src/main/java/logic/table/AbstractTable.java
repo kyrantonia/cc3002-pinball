@@ -99,8 +99,9 @@ public abstract class AbstractTable implements Table,Visitor {
     }
     @Override
     public void update(Observable observable, Object o) {
+        Game.getInstance().increaseScore((Integer) o);
         //System.out.println("me notificaron soy table "+o+" "+observable);
-        ((Hittable)o).accept(this);
+        ((Hittable)observable).accept(this);
         //setChanged();
         //notifyObservers();
     }
@@ -112,9 +113,6 @@ public abstract class AbstractTable implements Table,Visitor {
 
     @Override
     public void visitTarget(Target target) {
-        int increment=target.getScore();
-        Game.getInstance().increaseScore(increment);
-
         target.invokeBonus();
         target.deactivate();
         System.out.printf("holi soy "+target);
@@ -122,8 +120,6 @@ public abstract class AbstractTable implements Table,Visitor {
 
     @Override
     public void visitBumper(Bumper bumper) {
-        int increment=bumper.getScore();
-        Game.getInstance().increaseScore(increment);
         if(bumper.remainingHitsToUpgrade()== 0 && !bumper.isUpgraded()) {
             bumper.upgrade();
             bumper.invokeBonus();

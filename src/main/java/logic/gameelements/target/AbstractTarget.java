@@ -16,7 +16,7 @@ abstract public class AbstractTarget extends AbstractHittable implements Target 
         if (isActive()){
             increment=this.getScore();
             setChanged();
-            notifyObservers(this);
+            notifyObservers(increment);
         }
         return increment;
     }

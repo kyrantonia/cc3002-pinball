@@ -23,7 +23,7 @@ abstract public class AbstractBumper extends AbstractHittable implements Bumper 
     public int hit(){
         int increment=this.getScore();
         setChanged();
-        notifyObservers(this);
+        notifyObservers(increment);
         return increment;
     }
     public int hit1() {
@@ -54,8 +54,6 @@ abstract public class AbstractBumper extends AbstractHittable implements Bumper 
     public void upgrade() {
         score = this.getUpgradedScore();
         isUpgrade = true;
-        setChanged();
-        notifyObservers(this);
     }
 
     @Override
