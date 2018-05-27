@@ -45,10 +45,6 @@ abstract public class AbstractBumper extends AbstractHittable implements Bumper 
     private int getUpgradedScore(){
         return this.upgradedScore;
     }
-    public void invokeBonus(){
-        Game.getInstance().getExtraBallBonus().trigger(Game.getInstance());
-    }
-
 
     @Override
     public void upgrade() {

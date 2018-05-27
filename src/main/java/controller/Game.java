@@ -32,6 +32,17 @@ public class Game {
         this.DropTargetBonus=new DropTargetBonus();
     }
 
+    public boolean gameOver() {
+        boolean gameOver=false;
+        if (getNumberOfBalls() == 0)
+            gameOver=true;
+        return gameOver;
+    }
+
+    public int dropBall(){
+        this.numberOfBalls=this.numberOfBalls-1;
+        return getNumberOfBalls();
+    }
     public Bonus getJackPotBonus() {
         System.out.printf("JackPotBonus");
         return this.JackPotBonus;
@@ -58,7 +69,7 @@ public class Game {
 
     }
     public void setTable(Table table){
-        this.table =table;
+        this.table = table;
         addObserverBumper();
         addObseverTarget();
     }
@@ -74,7 +85,7 @@ public class Game {
         }
     }
     public Table getTable() {
-        return table;
+        return this.table;
     }
 
     public int getNumberOfBalls() {
