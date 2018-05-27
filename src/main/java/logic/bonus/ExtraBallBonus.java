@@ -1,24 +1,16 @@
 package logic.bonus;
 
 import controller.Game;
+import logic.table.Visitor;
 
 public class ExtraBallBonus extends AbstractBonus {
-    private static ExtraBallBonus instance;
-    int timesTriggered;
-    private ExtraBallBonus(){
-        super();
-    }
-    public static ExtraBallBonus getInstance(){
-        if(instance==null){
-            instance= new ExtraBallBonus();
-        }
-        return instance;
-
-    }
 
     @Override
     public void trigger(Game game) {
         game.increaseNumberOfBalls(1);
         increaseTimesTriggered();
+    }
+    public void accept(Visitor visitor) {
+        visitor.visitExtraBallBonus(this);
     }
 }

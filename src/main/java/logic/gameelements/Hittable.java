@@ -30,5 +30,4 @@ public interface Hittable {
 
     void addObserver();
 
-    public void accept(Visitor visitor);
 }

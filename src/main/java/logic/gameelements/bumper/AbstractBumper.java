@@ -2,7 +2,6 @@ package logic.gameelements.bumper;
 
 import controller.Game;
 import logic.gameelements.AbstractHittable;
-import logic.table.Visitor;
 
 abstract public class AbstractBumper extends AbstractHittable implements Bumper {
     private int defaultScore;
@@ -13,7 +12,7 @@ abstract public class AbstractBumper extends AbstractHittable implements Bumper 
 
 
     AbstractBumper(int score, int hitsToUpgrade,int upgradedScore){
-        super(score);
+        super(score, Game.getInstance().getExtraBallBonus());
         this.hitsToUpgrade = hitsToUpgrade;
         this.upgradedScore = upgradedScore;
         this.isUpgrade = false;
@@ -22,22 +21,21 @@ abstract public class AbstractBumper extends AbstractHittable implements Bumper 
     }
     public int hit(){
         int increment=this.getScore();
-        setChanged();
-        notifyObservers(increment);
-        return increment;
-    }
-    public int hit1() {
-        int increment=this.getScore();
-        Game.getInstance().increaseScore(increment);
-        if(this.remainingHitsToUpgrade()== 0 && !isUpgraded()) {
+        decreaseHitsToUpgrade(1);
+        if(this.remainingHitsToUpgrade()== 0 && !this.isUpgraded()) {
             this.upgrade();
-            this.invokeBonus();
+            setChanged();
+            notifyObservers(getBonus());
         }
+        Game.getInstance().increaseScore(increment);
         return increment;
     }
 
+    public void decreaseHitsToUpgrade(int decrease){
+        this.hitsToUpgrade=Math.max(hitsToUpgrade-decrease,0);
+    }
     public int remainingHitsToUpgrade(){
-        this.hitsToUpgrade = Math.max(0,hitsToUpgrade-1);
+        this.hitsToUpgrade = Math.max(0,hitsToUpgrade);
         return hitsToUpgrade;
     }
     public boolean isUpgraded(){
@@ -50,11 +48,14 @@ abstract public class AbstractBumper extends AbstractHittable implements Bumper 
     public void invokeBonus(){
         Game.getInstance().getExtraBallBonus().trigger(Game.getInstance());
     }
+
+
     @Override
     public void upgrade() {
         score = this.getUpgradedScore();
         isUpgrade = true;
-    }
+        this.hitsToUpgrade=0;
+        }
 
     @Override
     public void downgrade() {
@@ -63,8 +64,5 @@ abstract public class AbstractBumper extends AbstractHittable implements Bumper 
         isUpgrade = true;
     }
 
-    public void accept(Visitor visitor) {
-        visitor.visitBumper(this);
-    }
 
 }

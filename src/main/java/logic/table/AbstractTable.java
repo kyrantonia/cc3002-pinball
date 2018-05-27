@@ -1,18 +1,24 @@
 package logic.table;
 
 import controller.Game;
+import logic.bonus.Bonus;
+import logic.bonus.DropTargetBonus;
+import logic.bonus.ExtraBallBonus;
+import logic.bonus.JackPotBonus;
 import logic.gameelements.ConcreteHittableFactory;
-import logic.gameelements.Hittable;
 import logic.gameelements.HittableFactory;
 import logic.gameelements.bumper.Bumper;
+import logic.gameelements.target.DropTarget;
 import logic.gameelements.target.Target;
 import java.util.Observable;
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractTable implements Table,Visitor {
+    private boolean activeDropTargetBonus;
     ArrayList<Bumper> bumpers;
     ArrayList<Target> targets;
+    ArrayList<DropTarget> dropTargets;
     String name;
     int numberOfBumpers;
     double prob;
@@ -20,6 +26,7 @@ public abstract class AbstractTable implements Table,Visitor {
     int numberOfDropTargets;
     HittableFactory hittableFactory;
     boolean isPlayable;
+    int currentlyDroppedDropTargets;
 
 
     public AbstractTable(String name, int numberOfBumpers, double prob, int numberOfSpotTargets, int numberOfDropTargets){
@@ -31,6 +38,10 @@ public abstract class AbstractTable implements Table,Visitor {
         this.numberOfSpotTargets=numberOfSpotTargets;
         this.numberOfDropTargets=numberOfDropTargets;
         this.hittableFactory=new ConcreteHittableFactory();
+        this.currentlyDroppedDropTargets =0;
+    }
+    void resetCurrentlyDroppedTargets(){
+        this.currentlyDroppedDropTargets =0;
     }
     int getNumberOfBumpers(){
         return this.numberOfBumpers;
@@ -71,9 +82,14 @@ public abstract class AbstractTable implements Table,Visitor {
 
     @Override
     public int getCurrentlyDroppedDropTargets() {
-        return 0;
+        return this.currentlyDroppedDropTargets;
     }
-
+    public void decreaseCurrentlyDroppedDropTargets(int decrease){
+        this.currentlyDroppedDropTargets -= decrease;
+    }
+    public int remainingHitsToDropTargetBonus(){
+        return getCurrentlyDroppedDropTargets()-getNumberOfDropTargets();
+    }
     @Override
     public List<Bumper> getBumpers() {
         return bumpers;
@@ -87,8 +103,9 @@ public abstract class AbstractTable implements Table,Visitor {
     @Override
     public void resetDropTargets() {
         for(Target target: this.getTargets()){
-            target.reset();
+            target.resetDropTargets();
         }
+        resetCurrentlyDroppedTargets();
     }
 
     @Override
@@ -99,9 +116,8 @@ public abstract class AbstractTable implements Table,Visitor {
     }
     @Override
     public void update(Observable observable, Object o) {
-        Game.getInstance().increaseScore((Integer) o);
         //System.out.println("me notificaron soy table "+o+" "+observable);
-        ((Hittable)observable).accept(this);
+        ((Bonus)o).accept(this);
         //setChanged();
         //notifyObservers();
     }
@@ -112,18 +128,23 @@ public abstract class AbstractTable implements Table,Visitor {
     }
 
     @Override
-    public void visitTarget(Target target) {
-        target.invokeBonus();
-        target.deactivate();
-        System.out.printf("holi soy "+target);
+    public void visitDropTargetBonus(DropTargetBonus dropTargetBonus) {
+        this.decreaseCurrentlyDroppedDropTargets(1);
+        dropTargetBonus.trigger(Game.getInstance());
     }
 
     @Override
-    public void visitBumper(Bumper bumper) {
-        if(bumper.remainingHitsToUpgrade()== 0 && !bumper.isUpgraded()) {
-            bumper.upgrade();
-            bumper.invokeBonus();
-        }
-        System.out.printf("holi soy "+bumper);
+    public void visitExtraBallBonus(ExtraBallBonus extraBallBonus) {
+        extraBallBonus.trigger(Game.getInstance());
     }
+
+    @Override
+    public void visitJackPotBonus(JackPotBonus jackPotBonus) {
+        decreaseCurrentlyDroppedDropTargets(1);
+        if(remainingHitsToDropTargetBonus() == 0){
+            jackPotBonus.trigger(Game.getInstance());
+
+        }
+    }
+
 }

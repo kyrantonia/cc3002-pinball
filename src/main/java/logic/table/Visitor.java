@@ -1,10 +1,13 @@
 package logic.table;
 
-import logic.gameelements.bumper.Bumper;
-import logic.gameelements.target.Target;
+import logic.bonus.DropTargetBonus;
+import logic.bonus.ExtraBallBonus;
+import logic.bonus.JackPotBonus;
+
 
 public interface Visitor {
-    public void visitTarget(Target target);
-    public void visitBumper(Bumper bumper);
+    public void visitDropTargetBonus(DropTargetBonus dropTargetBonus);
+    public void visitExtraBallBonus(ExtraBallBonus extraBallBonus);
+    public void visitJackPotBonus(JackPotBonus jackPotBonus);
 
 }

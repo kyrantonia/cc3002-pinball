@@ -1,6 +1,7 @@
 package logic.bonus;
 
 import controller.Game;
+import logic.table.Visitor;
 
 
 abstract public class AbstractBonus implements Bonus {

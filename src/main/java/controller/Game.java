@@ -1,9 +1,9 @@
 package controller;
 
+import logic.bonus.Bonus;
 import logic.bonus.DropTargetBonus;
 import logic.bonus.ExtraBallBonus;
 import logic.bonus.JackPotBonus;
-import logic.gameelements.Hittable;
 import logic.gameelements.bumper.Bumper;
 import logic.gameelements.target.Target;
 import logic.table.FullPlayableTable;
@@ -18,30 +18,33 @@ import logic.table.NullTable;
 public class Game {
     private int currentScore;
     private int numberOfBalls;
-    private JackPotBonus JackPotBonus;
-    private ExtraBallBonus ExtraBallBonus;
-    private DropTargetBonus DropTargetBonus;
+    private Bonus JackPotBonus;
+    private Bonus ExtraBallBonus;
+    private Bonus DropTargetBonus;
     private static Game uniqueInstance;
     private Table table;
     private Game()  {
         this.currentScore = 0;
         this.numberOfBalls = 5;
         table =new NullTable();
+        this.JackPotBonus=new JackPotBonus();
+        this.ExtraBallBonus=new ExtraBallBonus();
+        this.DropTargetBonus=new DropTargetBonus();
     }
 
-    public JackPotBonus getJackPotBonus() {
+    public Bonus getJackPotBonus() {
         System.out.printf("JackPotBonus");
-        return JackPotBonus.getInstance();
+        return this.JackPotBonus;
     }
 
-    public DropTargetBonus getDropTargetBonus() {
+    public Bonus getDropTargetBonus() {
         System.out.printf("DropTargetBonus");
-        return DropTargetBonus.getInstance();
+        return this.DropTargetBonus;
     }
 
-    public ExtraBallBonus getExtraBallBonus() {
+    public Bonus getExtraBallBonus() {
         System.out.printf("Extra Ball Bonus");
-        return ExtraBallBonus.getInstance();
+        return this.ExtraBallBonus;
     }
 
     public static Game getInstance(){

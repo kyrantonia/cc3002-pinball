@@ -1,24 +1,16 @@
 package logic.bonus;
 
 import controller.Game;
+import logic.table.Visitor;
 
 public class JackPotBonus extends AbstractBonus {
-
-    private static JackPotBonus instance;
-    int timesTriggered;
-    private JackPotBonus(){
-        super();
-    }
-    public static JackPotBonus getInstance(){
-        if(instance==null){
-            instance= new JackPotBonus();
-        }
-        return instance;
-    }
 
     @Override
     public void trigger(Game game) {
         Game.getInstance().increaseScore(100000);
         increaseTimesTriggered();
+    }
+    public void accept(Visitor visitor) {
+        visitor.visitJackPotBonus(this);
     }
 }
