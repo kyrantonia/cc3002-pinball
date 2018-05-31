@@ -49,26 +49,10 @@ public abstract class AbstractTable implements Table,Visitor {
     double getProb(){
         return this.prob;
     }
-    int getNumberOfPopBumper(){
-        return (int) (getNumberOfBumpers()*getProb());
-    }
-    int getNumberOfKickerBumper(){
-        return getNumberOfBumpers()-getNumberOfPopBumper();
-    }
 
     void createHittablesOnTable() {
-        for(int i=0;i<getNumberOfKickerBumper();i++){
-            bumpers.add(hittableFactory.createKickerBumper());
-        }
-        for(int i=0;i<getNumberOfPopBumper();i++){
-            bumpers.add(hittableFactory.createPopBumper());
-        }
-        for(int i=0;i<numberOfSpotTargets;i++){
-            targets.add(hittableFactory.createSpotTarget());
-        }
-        for(int i=0;i<numberOfDropTargets;i++){
-            targets.add(hittableFactory.createDropTarget());
-        }
+        bumpers=hittableFactory.createBumpers(getNumberOfBumpers(),getProb());
+        targets=hittableFactory.createTargets(getNumberOfSpotTargets(),getNumberOfDropTargets());
     }
     @Override
     public String getTableName() {
@@ -78,6 +62,9 @@ public abstract class AbstractTable implements Table,Visitor {
     @Override
     public int getNumberOfDropTargets() {
         return numberOfDropTargets;
+    }
+    public int getNumberOfSpotTargets() {
+        return numberOfSpotTargets;
     }
 
     @Override

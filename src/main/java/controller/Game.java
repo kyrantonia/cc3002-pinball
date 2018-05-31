@@ -26,10 +26,10 @@ public class Game {
     private Game()  {
         this.currentScore = 0;
         this.numberOfBalls = 5;
-        table =new NullTable();
-        this.JackPotBonus=new JackPotBonus();
-        this.ExtraBallBonus=new ExtraBallBonus();
-        this.DropTargetBonus=new DropTargetBonus();
+        table = new NullTable();
+        this.JackPotBonus = new JackPotBonus();
+        this.ExtraBallBonus = new ExtraBallBonus();
+        this.DropTargetBonus = new DropTargetBonus();
     }
 
     public boolean gameOver() {
@@ -102,19 +102,19 @@ public class Game {
 
 
     public static void main(String[] args) {
-        Game.getInstance();
-        Game.getInstance().setTable(new FullPlayableTable("mesa",6,0,1,1));
-        for(Bumper b: Game.getInstance().table.getBumpers()){
+        Game g=Game.getInstance();
+        g.setTable(new FullPlayableTable("mesa",6,0,1,1));
+        for(Bumper b: g.table.getBumpers()){
             b.hit();
-            System.out.println(Game.getInstance().getCurrentScore());
+            System.out.println(g.getCurrentScore());
         }
-        Bumper bumper=Game.getInstance().table.getBumpers().get(1);
+        Bumper bumper=g.table.getBumpers().get(1);
         for(int i=0;i<6;i++){
             bumper.hit();
         }
-        for(Target target: Game.getInstance().table.getTargets()){
+        for(Target target: g.table.getTargets()){
             target.hit();
-            System.out.println(Game.getInstance().getCurrentScore());
+            System.out.println(g.getCurrentScore());
         }
 
     }

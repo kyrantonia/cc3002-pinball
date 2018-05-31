@@ -1,13 +1,11 @@
 package logic.gameelements;
 
-import logic.gameelements.bumper.KickerBumper;
-import logic.gameelements.bumper.PopBumper;
-import logic.gameelements.target.DropTarget;
-import logic.gameelements.target.SpotTarget;
+import logic.gameelements.bumper.Bumper;
+import logic.gameelements.target.Target;
+
+import java.util.ArrayList;
 
 public interface HittableFactory {
-    public PopBumper createPopBumper();
-    public KickerBumper createKickerBumper();
-    public DropTarget createDropTarget();
-    public SpotTarget createSpotTarget();
+    public ArrayList<Bumper> createBumpers(int numberOfBumpers, double prob);
+    public ArrayList<Target> createTargets(int numberOfSpotTargets, int numberOfDropTargets);
 }
