@@ -50,10 +50,7 @@ public abstract class AbstractTable implements Table,Visitor {
         return this.prob;
     }
 
-    void createHittablesOnTable() {
-        bumpers=hittableFactory.createBumpers(getNumberOfBumpers(),getProb());
-        targets=hittableFactory.createTargets(getNumberOfSpotTargets(),getNumberOfDropTargets());
-    }
+
     @Override
     public String getTableName() {
         return name;
