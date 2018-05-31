@@ -10,6 +10,8 @@ import logic.table.FullPlayableTable;
 import logic.table.Table;
 import logic.table.NullTable;
 
+import java.util.Random;
+
 /**
  * Game logic controller class.
  *
@@ -23,6 +25,7 @@ public class Game {
     private Bonus DropTargetBonus;
     private static Game uniqueInstance;
     private Table table;
+    private Random random;
     private Game()  {
         this.currentScore = 0;
         this.numberOfBalls = 5;
@@ -30,8 +33,17 @@ public class Game {
         this.JackPotBonus = new JackPotBonus();
         this.ExtraBallBonus = new ExtraBallBonus();
         this.DropTargetBonus = new DropTargetBonus();
-    }
+        this.random = new Random();
 
+    }
+    public void setRandom(long seed){
+       random=new Random(seed);
+    }
+    public double getARandomNumber(){
+        double number;
+        number = this.random.nextDouble();
+        return number;
+    }
     public boolean gameOver() {
         boolean gameOver=false;
         if (getNumberOfBalls() == 0)
@@ -44,17 +56,14 @@ public class Game {
         return getNumberOfBalls();
     }
     public Bonus getJackPotBonus() {
-        System.out.printf("JackPotBonus");
         return this.JackPotBonus;
     }
 
     public Bonus getDropTargetBonus() {
-        System.out.printf("DropTargetBonus");
         return this.DropTargetBonus;
     }
 
     public Bonus getExtraBallBonus() {
-        System.out.printf("Extra Ball Bonus");
         return this.ExtraBallBonus;
     }
 
@@ -64,6 +73,11 @@ public class Game {
         }
         return uniqueInstance;
     }
+
+    public static void resetInstance(){
+        uniqueInstance= null;
+    }
+
     public int getCurrentScore() {
         return this.currentScore;
 
@@ -106,7 +120,6 @@ public class Game {
         g.setTable(new FullPlayableTable("mesa",6,0,1,1));
         for(Bumper b: g.table.getBumpers()){
             b.hit();
-            System.out.println(g.getCurrentScore());
         }
         Bumper bumper=g.table.getBumpers().get(1);
         for(int i=0;i<6;i++){
@@ -114,7 +127,6 @@ public class Game {
         }
         for(Target target: g.table.getTargets()){
             target.hit();
-            System.out.println(g.getCurrentScore());
         }
 
     }

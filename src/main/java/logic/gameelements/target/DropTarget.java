@@ -1,6 +1,5 @@
 package logic.gameelements.target;
 import controller.Game;
-import logic.bonus.DropTargetBonus;
 
 public class DropTarget extends AbstractTarget {
 
@@ -11,7 +10,7 @@ public class DropTarget extends AbstractTarget {
     @Override
     public void deactivate() {
         super.deactivate();
-        if (random(0.3)){
+        if (Game.getInstance().getARandomNumber()<0.3){
             setChanged();
             notifyObservers(Game.getInstance().getDropTargetBonus());
         }

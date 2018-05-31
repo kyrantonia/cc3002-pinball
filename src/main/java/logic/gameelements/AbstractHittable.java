@@ -3,7 +3,6 @@ import controller.Game;
 import logic.bonus.Bonus;
 
 import java.util.Observable;
-import java.util.Random;
 
 public abstract class AbstractHittable extends Observable implements Hittable {
     protected int score;
@@ -20,9 +19,5 @@ public abstract class AbstractHittable extends Observable implements Hittable {
     }
     public Bonus getBonus(){
         return this.bonus;
-    }
-    public boolean random(double prob){
-        Random random = new Random();
-        return prob<random.nextDouble();
     }
 }
