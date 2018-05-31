@@ -11,8 +11,10 @@ public class DropTarget extends AbstractTarget {
     @Override
     public void deactivate() {
         super.deactivate();
-        setChanged();
-        notifyObservers(Game.getInstance().getDropTargetBonus());
+        if (random(0.3)){
+            setChanged();
+            notifyObservers(Game.getInstance().getDropTargetBonus());
+        }
     }
 
     @Override
