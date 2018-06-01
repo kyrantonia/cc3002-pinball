@@ -29,6 +29,7 @@ public class TestingKickerBumper {
     private int numberOfBallsHitFiveTimes;
     private int timesTriggerBonusHitAHundredTimes;
     private int numberOfBallsHitAHundredTimes;
+    private Game game;
 
     @After
     public void resetGame(){
@@ -36,8 +37,8 @@ public class TestingKickerBumper {
     }
     @Before
     public void setup(){
-        Game game= Game.getInstance();
-        game.setRandom(1);
+        game= Game.getInstance();
+        game.setRandom(17);
         game.setTable(new PlayableTableWithNoTargets("mesaSinTarget",4,0));
         kickerBumperNotHit=game.getTable().getBumpers().get(0);
         gameScoreNotHit=game.getCurrentScore();
@@ -75,8 +76,8 @@ public class TestingKickerBumper {
         int expectedTimesTriggerBonusNotHit = 0;
         int expectedNumberOfBallsHitOnce = 5;
         int expectedTimesTriggerBonusHitOnce = 0;
-        int expectedTimesTriggerBonusHitFiveTimes = 0;
-        int expectedNumberOfBallsHitFiveTimes = 5;
+        int expectedTimesTriggerBonusHitFiveTimes = 1;
+        int expectedNumberOfBallsHitFiveTimes = 6;
         int expectedTimesTriggerBonusHitAHundredTimes = 1;
         int expectedNumberOfBallsHitAHundredTimes =6;
 
@@ -143,29 +144,72 @@ public class TestingKickerBumper {
 
     @Test
     public void testUpgrade(){
+        /*
+         0.0443859375038691
+        0.23973661293649284
+        0.707454821689446
+            0.6594836922590074
+0.858996580616418
+0.003754742582413595
+         */
+        //before Upgrade
+        int expectedNumberOfBallsNotHit = 5;
+        int expectedTimesTriggerBonusNotHit = 0;
+        int expectedNumberOfBallsHitOnce = 5;
+        int expectedTimesTriggerBonusHitOnce = 0;
+        int expectedTimesTriggerBonusHitFiveTimes = 1;
+        int expectedNumberOfBallsHitFiveTimes = 6;
+        int expectedTimesTriggerBonusHitAHundredTimes = 1;
+        int expectedNumberOfBallsHitAHundredTimes =6;
+        //After Upgrade
+        int expectedNumberOfBallsNotHitAfterUpgrade = 6;
+        int expectedTimesTriggerBonusNotHitAfterUpgrade = 1;
+        int expectedNumberOfBallsHitOnceAfterUpgrade = 6;
+        int expectedTimesTriggerBonusHitOnceAfterUpgrade = 1;
+        int expectedTimesTriggerBonusHitFiveTimesAfterUpgrade = 1;
+        int expectedNumberOfBallsHitFiveTimesAfterUpgrade = 6;
+        int expectedTimesTriggerBonusHitAHundredTimesAfterUpgrade = 2;
+        int expectedNumberOfBallsHitAHundredTimesAfterUpgrade =7;
+
         boolean kickerBumperNotHitBeforeUpgrade=kickerBumperNotHit.isUpgraded();
         kickerBumperNotHit.upgrade();
         boolean kickerBumperNotHitAfterUpgrade=kickerBumperNotHit.isUpgraded();
         assertFalse(kickerBumperNotHitBeforeUpgrade);
         assertTrue(kickerBumperNotHitAfterUpgrade);
+        assertEquals(expectedNumberOfBallsNotHit, numberOfBallsNotHit);
+        assertEquals(expectedTimesTriggerBonusNotHit,timesTriggerBonusNotHit);
+        assertEquals(expectedNumberOfBallsNotHitAfterUpgrade, game.getNumberOfBalls());
+        assertEquals(expectedTimesTriggerBonusNotHitAfterUpgrade,game.getExtraBallBonus().timesTriggered());
 
         boolean kickerBumperHitOnceBeforeUpgrade=kickerBumperHitOnce.isUpgraded();
         kickerBumperHitOnce.upgrade();
         boolean kickerBumperHitOnceAfterUpgrade=kickerBumperHitOnce.isUpgraded();
         assertFalse(kickerBumperHitOnceBeforeUpgrade);
         assertTrue(kickerBumperHitOnceAfterUpgrade);
+        assertEquals(expectedNumberOfBallsHitOnce, numberOfBallsHitOnce);
+        assertEquals(expectedTimesTriggerBonusHitOnce,timesTriggerBonusHitOnce);
+        assertEquals(expectedNumberOfBallsHitOnceAfterUpgrade, game.getNumberOfBalls());
+        assertEquals(expectedTimesTriggerBonusHitOnceAfterUpgrade,game.getExtraBallBonus().timesTriggered());
 
         boolean kickerBumperHitFiveTimesBeforeUpgrade=kickerBumperHitFiveTimes.isUpgraded();
         kickerBumperHitFiveTimes.upgrade();
         boolean kickerBumperHitFiveTimesAfterUpgrade=kickerBumperHitFiveTimes.isUpgraded();
         assertTrue(kickerBumperHitFiveTimesBeforeUpgrade);
         assertTrue(kickerBumperHitFiveTimesAfterUpgrade);
+        assertEquals(expectedNumberOfBallsHitFiveTimes, numberOfBallsHitFiveTimes);
+        assertEquals(expectedTimesTriggerBonusHitFiveTimes,timesTriggerBonusHitFiveTimes);
+        assertEquals(expectedNumberOfBallsHitFiveTimesAfterUpgrade, game.getNumberOfBalls());
+        assertEquals(expectedTimesTriggerBonusHitFiveTimesAfterUpgrade,game.getExtraBallBonus().timesTriggered());
 
         boolean kickerBumperHitAHundredTimesBeforeUpgrade=kickerBumperHitAHundredTimes.isUpgraded();
         kickerBumperHitAHundredTimes.upgrade();
         boolean kickerBumperHitAHundredTimesAfterUpgrade=kickerBumperHitAHundredTimes.isUpgraded();
         assertTrue(kickerBumperHitAHundredTimesBeforeUpgrade);
         assertTrue(kickerBumperHitAHundredTimesAfterUpgrade);
+        assertEquals(expectedNumberOfBallsHitAHundredTimes, numberOfBallsHitAHundredTimes);
+        assertEquals(expectedTimesTriggerBonusHitAHundredTimes,timesTriggerBonusHitAHundredTimes);
+        assertEquals(expectedNumberOfBallsHitAHundredTimesAfterUpgrade, game.getNumberOfBalls());
+        assertEquals(expectedTimesTriggerBonusHitAHundredTimesAfterUpgrade,game.getExtraBallBonus().timesTriggered());
     }
 
     @Test
