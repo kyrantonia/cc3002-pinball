@@ -16,7 +16,6 @@ public class DropTarget extends AbstractTarget {
         }
     }
 
-    @Override
     public void resetDropTargets() {
         super.reset();
     }

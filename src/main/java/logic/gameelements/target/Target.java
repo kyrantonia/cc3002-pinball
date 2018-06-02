@@ -20,7 +20,8 @@ public interface Target extends Hittable {
     /**
      * Resets the state of a target making it active again.
      */
-    void resetDropTargets();
+    void reset();
 
+    void resetDropTargets();
     void deactivate();
 }

@@ -33,7 +33,6 @@ abstract public class AbstractTarget extends AbstractHittable implements Target 
     public void reset(){
         this.isActive=true;
     }
-    @Override
     public void resetDropTargets() {
     }
 
