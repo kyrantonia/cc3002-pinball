@@ -114,7 +114,9 @@ public abstract class AbstractTable implements Table,Visitor {
     @Override
     public void visitDropTargetBonus(DropTargetBonus dropTargetBonus) {
         this.decreaseCurrentlyDroppedDropTargets(1);
-        dropTargetBonus.trigger(Game.getInstance());
+        if(remainingHitsToDropTargetBonus() == 0){
+            dropTargetBonus.trigger(Game.getInstance());
+        }
     }
 
     @Override
@@ -124,11 +126,7 @@ public abstract class AbstractTable implements Table,Visitor {
 
     @Override
     public void visitJackPotBonus(JackPotBonus jackPotBonus) {
-        decreaseCurrentlyDroppedDropTargets(1);
-        if(remainingHitsToDropTargetBonus() == 0){
             jackPotBonus.trigger(Game.getInstance());
-
-        }
     }
 
 }
