@@ -42,6 +42,7 @@ public class Game {
     public double getARandomNumber(){
         double number;
         number = this.random.nextDouble();
+        System.out.println(number);
         return number;
     }
     public boolean gameOver() {

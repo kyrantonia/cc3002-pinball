@@ -68,11 +68,11 @@ public abstract class AbstractTable implements Table,Visitor {
     public int getCurrentlyDroppedDropTargets() {
         return this.currentlyDroppedDropTargets;
     }
-    public void decreaseCurrentlyDroppedDropTargets(int decrease){
-        this.currentlyDroppedDropTargets -= decrease;
+    public void increaseCurrentlyDroppedDropTargets(int increase){
+        this.currentlyDroppedDropTargets += increase;
     }
     public int remainingHitsToDropTargetBonus(){
-        return getCurrentlyDroppedDropTargets()-getNumberOfDropTargets();
+        return Math.max(getNumberOfDropTargets()-getCurrentlyDroppedDropTargets(),0);
     }
     @Override
     public List<Bumper> getBumpers() {
@@ -113,7 +113,7 @@ public abstract class AbstractTable implements Table,Visitor {
 
     @Override
     public void visitDropTargetBonus(DropTargetBonus dropTargetBonus) {
-        this.decreaseCurrentlyDroppedDropTargets(1);
+        this.increaseCurrentlyDroppedDropTargets(1);
         if(remainingHitsToDropTargetBonus() == 0){
             dropTargetBonus.trigger(Game.getInstance());
         }
