@@ -10,7 +10,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class TestingSpotTarget {
-    private Target spotTarget;
     private Game game;
     private Target spotTargetNotHit;
     private int gameScoreNotHit;
@@ -19,12 +18,10 @@ public class TestingSpotTarget {
     private int scoreSpotTargetHitOnce;
     private int gameScoreHitOnce;
     private int timesTriggerBonusHitOnce;
-    private int numberOfBallsHitOnce;
     private Target spotTargetHitAHundredTimes;
     private int scoreSpotTargetHitAHundredTimes;
     private int gameScoreHitAHundredTimes;
     private int timesTriggerBonusHitAHundredTimes;
-    private int numberOfBallsHitAHundredTimes;
 
     @After
     public void resetGame(){
