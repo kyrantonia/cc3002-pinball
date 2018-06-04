@@ -40,7 +40,6 @@ public class TestingDropTarget {
     private static int timesTriggerEBBonusHitAHundredTimesFirstHit;
     private static int timesTriggerDTBonusHitAHundredTimesFirstHit;
     private static int numberOfBallsHitAHundredTimesFirstHit;
-    private static int dropTargetNotHitScore;
 
     private Target dropTargetWithoutTableNotHit;
     private Target dropTargetWithoutTableHitOnce;
@@ -56,7 +55,6 @@ public class TestingDropTarget {
         game.setRandom(10);
         game.setTable(new FullPlayableTable("mesaConTargets",0,1,0,3));
         dropTargetNotHit=game.getTable().getTargets().get(0);
-        dropTargetNotHitScore=dropTargetNotHit.getScore();
         gameScoreNotHit=game.getCurrentScore();
         timesTriggerEBBonusNotHit = game.getExtraBallBonus().timesTriggered();
         timesTriggerDTBonusNotHit = game.getDropTargetBonus().timesTriggered();
@@ -121,7 +119,6 @@ public class TestingDropTarget {
         int expectedNotHitScore = 100;
         int expectedNotHitScoreGame = 0;
         int expectedNumberOfBallsNotHit = 5;
-        assertEquals(expectedNotHitScore, dropTargetNotHitScore);
         assertEquals(expectedNotHitScoreGame,gameScoreNotHit);
         assertEquals(expectedNumberOfBallsNotHit,numberOfBallsNotHit);
         assertEquals(expectedTimesTriggerEBBonusNotHit,timesTriggerEBBonusNotHit);
