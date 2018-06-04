@@ -15,7 +15,7 @@ public class TestingFullPlayableTable {
     public void setup() {
         Game.resetInstance();
         game=Game.getInstance();
-        fullPlayableTable = new FullPlayableTable("fullTable", 3, 0.5, 1, 2);
+        fullPlayableTable = new FullPlayableTable("fullTable", 3, 0.5, 0, 2);
         game.setTable(fullPlayableTable);
     }
     @Test
@@ -34,13 +34,13 @@ public class TestingFullPlayableTable {
     public void  getCurrentlyDroppedDropTargets(){
         int expectedNumberOfDroptTargets = 0;
         assertEquals(expectedNumberOfDroptTargets, fullPlayableTable.getCurrentlyDroppedDropTargets());
-        fullPlayableTable.getTargets().get(1).hit();
+        fullPlayableTable.getTargets().get(0).hit();
         int expectedNumberOfDroptTargetsFTHitFirst = 1;
         assertEquals(expectedNumberOfDroptTargetsFTHitFirst,fullPlayableTable.getCurrentlyDroppedDropTargets());
-        fullPlayableTable.getTargets().get(2).hit();
+        fullPlayableTable.getTargets().get(1).hit();
         int expectedNumberOfDroptTargetsFTHitSecond = 2;
         assertEquals(expectedNumberOfDroptTargetsFTHitSecond,fullPlayableTable.getCurrentlyDroppedDropTargets());
-        fullPlayableTable.getTargets().get(2).hit();
+        fullPlayableTable.getTargets().get(1).hit();
         int expectedNumberOfDroptTargetsFTHitSecondAgain = 2;
         assertEquals(expectedNumberOfDroptTargetsFTHitSecondAgain,fullPlayableTable.getCurrentlyDroppedDropTargets());
     }
@@ -55,9 +55,19 @@ public class TestingFullPlayableTable {
             assertFalse(target.isActive());
         }
         fullPlayableTable.resetDropTargets();
-        assertFalse(fullPlayableTable.getTargets().get(0).isActive());
-        assertTrue(fullPlayableTable.getTargets().get(1).isActive());
-        assertTrue(fullPlayableTable.getTargets().get(2).isActive());
+        for (Target target : fullPlayableTable.getTargets()) {
+            assertTrue(target.isActive());
+        }
+        game.setTable(new FullPlayableTable("fullTable", 3, 0.5, 3, 0));
+        for (Target target : fullPlayableTable.getTargets()) {
+            target.hit();
+        }
+        for (Target target : fullPlayableTable.getTargets()) {
+            assertFalse(target.isActive());
+        }
+        for (Target target : fullPlayableTable.getTargets()) {
+            assertFalse(target.isActive());
+        }
     }
 
     @Test
