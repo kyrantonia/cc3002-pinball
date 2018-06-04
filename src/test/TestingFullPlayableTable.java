@@ -45,14 +45,6 @@ public class TestingFullPlayableTable {
         assertEquals(expectedNumberOfDroptTargetsFTHitSecondAgain,fullPlayableTable.getCurrentlyDroppedDropTargets());
     }
 
-    @Test
-    public void  getBumpers(){
-
-    }
-
-    @Test
-    public void getTargets(){
-    }
 
     @Test
     public void resetDropTargets(){

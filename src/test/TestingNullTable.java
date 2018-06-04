@@ -36,13 +36,6 @@ public class TestingNullTable {
     }
 
     @Test
-    public void  getBumpers(){}
-
-    @Test
-    public void getTargets(){
-    }
-
-    @Test
     public void isPlayableTable(){
         assertFalse(nullTable.isPlayableTable());
     }
