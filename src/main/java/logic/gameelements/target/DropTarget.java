@@ -14,7 +14,7 @@ public class DropTarget extends AbstractTarget {
         notifyObservers(Game.getInstance().getDropTargetBonus());
     }
 
-    public void resetDropTargets() {
+    public void resetDropTarget() {
         super.reset();
     }
 }

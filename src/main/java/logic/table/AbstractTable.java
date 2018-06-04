@@ -87,7 +87,7 @@ public abstract class AbstractTable implements Table,Visitor {
     @Override
     public void resetDropTargets() {
         for(Target target: this.getTargets()){
-            target.resetDropTargets();
+            target.resetDropTarget();
         }
         resetCurrentlyDroppedTargets();
     }

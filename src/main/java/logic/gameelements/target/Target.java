@@ -22,6 +22,6 @@ public interface Target extends Hittable {
      */
     void reset();
 
-    void resetDropTargets();
+    void resetDropTarget();
     void deactivate();
 }

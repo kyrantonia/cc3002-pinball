@@ -112,15 +112,15 @@ public class TestingSpotTarget {
     @Test
     public void testResetDropTargets(){
         boolean spotTargetNotHitBeforeReset = spotTargetNotHit.isActive();
-        spotTargetNotHit.resetDropTargets();
+        spotTargetNotHit.resetDropTarget();
         boolean spotTargetNotHitAfterReset = spotTargetNotHit.isActive();
 
         boolean spotTargeHitOnceBeforeReset = spotTargetHitOnce.isActive();
-        spotTargetHitOnce.resetDropTargets();
+        spotTargetHitOnce.resetDropTarget();
         boolean spotTargetHitOnceAfterReset = spotTargetHitOnce.isActive();
 
         boolean spotTargetHitAHundredTimesBeforeReset = spotTargetHitAHundredTimes.isActive();
-        spotTargetHitAHundredTimes.resetDropTargets();
+        spotTargetHitAHundredTimes.resetDropTarget();
         boolean spotTargetHitAHundredTimesAfterReset = spotTargetHitAHundredTimes.isActive();
 
         assertTrue(spotTargetNotHitBeforeReset);
