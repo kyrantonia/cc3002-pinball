@@ -4,6 +4,7 @@ import controller.Game;
 import logic.gameelements.AbstractHittable;
 
 abstract public class AbstractBumper extends AbstractHittable implements Bumper {
+    private int defaultScore;
     private int defaultHitsToUpgrade;
     private int hitsToUpgrade;
     private int upgradedScore;
@@ -15,6 +16,7 @@ abstract public class AbstractBumper extends AbstractHittable implements Bumper 
         this.hitsToUpgrade = hitsToUpgrade;
         this.upgradedScore = upgradedScore;
         this.isUpgrade = false;
+        this.defaultScore = score;
         this.defaultHitsToUpgrade = hitsToUpgrade;
     }
     public int hit(){

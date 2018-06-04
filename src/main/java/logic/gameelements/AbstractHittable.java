@@ -7,11 +7,9 @@ import java.util.Observable;
 public abstract class AbstractHittable extends Observable implements Hittable {
     protected int score;
     protected Bonus bonus;
-    protected int defaultScore;
     public  AbstractHittable(int score, Bonus bonus){
         this.score=score;
         this.bonus=bonus;
-        this.defaultScore = score;
     }
     public int getScore() {
         return this.score;

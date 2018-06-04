@@ -56,7 +56,7 @@ public class TestingDropTarget {
         game.setRandom(10);
         game.setTable(new FullPlayableTable("mesaConTargets",0,1,0,3));
         dropTargetNotHit=game.getTable().getTargets().get(0);
-        dropTargetNotHitScore =dropTargetNotHit.getScore();
+        dropTargetNotHitScore=dropTargetNotHit.getScore();
         gameScoreNotHit=game.getCurrentScore();
         timesTriggerEBBonusNotHit = game.getExtraBallBonus().timesTriggered();
         timesTriggerDTBonusNotHit = game.getDropTargetBonus().timesTriggered();
@@ -168,8 +168,8 @@ public class TestingDropTarget {
     @Test
     public void testGetScore(){
         int expectedNotHitScore = 100;
-        int expectedHitOnceScore = 0;
-        int expectedHitAHundredTimesScore = 0;
+        int expectedHitOnceScore = 100;
+        int expectedHitAHundredTimesScore = 100;
 
         assertEquals(expectedNotHitScore, dropTargetWithoutTableNotHit.getScore());
         assertEquals(expectedHitOnceScore, dropTargetWithoutTableHitOnce.getScore());
@@ -183,83 +183,60 @@ public class TestingDropTarget {
     }
     @Test
     public void testReset(){
-        Target dropTargetNotHitBeforeReset = dropTargetWithoutTableNotHit;
-        assertTrue(dropTargetNotHitBeforeReset.isActive());
-        assertEquals(100,dropTargetNotHitBeforeReset.getScore());
+        boolean dropTargetNotHitBeforeReset = dropTargetWithoutTableNotHit.isActive();
         dropTargetWithoutTableNotHit.reset();
-        Target dropTargetNotHitAfterReset = dropTargetWithoutTableNotHit;
-        assertTrue(dropTargetNotHitAfterReset.isActive());
-        assertEquals(100,dropTargetNotHitAfterReset.getScore());
-
-        Target dropTargetHitOnceBeforeReset = dropTargetWithoutTableHitOnce;
-        assertFalse(dropTargetHitOnceBeforeReset.isActive());
-        assertEquals(0,dropTargetHitOnceBeforeReset.getScore());
+        boolean dropTargetNotHitAfterReset = dropTargetWithoutTableNotHit.isActive();
+        boolean dropTargetHitOnceBeforeReset = dropTargetWithoutTableHitOnce.isActive();
         dropTargetWithoutTableHitOnce.reset();
-        Target dropTargetHitOnceAfterReset = dropTargetWithoutTableHitOnce;
-        assertTrue(dropTargetHitOnceAfterReset.isActive());
-        assertEquals(100,dropTargetHitOnceAfterReset.getScore());
-
-        Target dropTargetHitAHundredTimesBeforeReset = dropTargetWithoutTableHitAHundredTimes;
-        assertFalse(dropTargetHitAHundredTimesBeforeReset.isActive());
-        assertEquals(0,dropTargetHitAHundredTimesBeforeReset.getScore());
+        boolean dropTargetHitOnceAfterReset = dropTargetWithoutTableHitOnce.isActive();
+        boolean dropTargetHitAHundredTimesBeforeReset = dropTargetWithoutTableHitAHundredTimes.isActive();
         dropTargetWithoutTableHitAHundredTimes.reset();
-        Target dropTargetHitAHundredTimesAfterReset = dropTargetWithoutTableHitAHundredTimes;
-        assertTrue(dropTargetHitAHundredTimesAfterReset.isActive());
-        assertEquals(100,dropTargetHitAHundredTimesAfterReset.getScore());
+        boolean dropTargetHitAHundredTimesAfterReset = dropTargetWithoutTableHitAHundredTimes.isActive();
 
-
+        assertTrue(dropTargetNotHitBeforeReset);
+        assertTrue(dropTargetNotHitAfterReset);
+        assertFalse(dropTargetHitOnceBeforeReset);
+        assertTrue(dropTargetHitOnceAfterReset);
+        assertFalse(dropTargetHitAHundredTimesBeforeReset);
+        assertTrue(dropTargetHitAHundredTimesAfterReset);
     }
     @Test
     public void testResetDropTargets(){
-        Target dropTargetNotHitBeforeReset = dropTargetWithoutTableNotHit;
-        assertTrue(dropTargetNotHitBeforeReset.isActive());
-        assertEquals(100,dropTargetNotHitBeforeReset.getScore());
+        boolean dropTargetNotHitBeforeReset = dropTargetWithoutTableNotHit.isActive();
         dropTargetWithoutTableNotHit.resetDropTarget();
-        Target dropTargetNotHitAfterReset = dropTargetWithoutTableNotHit;
-        assertTrue(dropTargetNotHitAfterReset.isActive());
-        assertEquals(100,dropTargetNotHitAfterReset.getScore());
-
-        Target dropTargetHitOnceBeforeReset = dropTargetWithoutTableHitOnce;
-        assertFalse(dropTargetHitOnceBeforeReset.isActive());
-        assertEquals(0,dropTargetHitOnceBeforeReset.getScore());
+        boolean dropTargetNotHitAfterReset = dropTargetWithoutTableNotHit.isActive();
+        boolean dropTargetHitOnceBeforeReset = dropTargetWithoutTableHitOnce.isActive();
         dropTargetWithoutTableHitOnce.resetDropTarget();
-        Target dropTargetHitOnceAfterReset = dropTargetWithoutTableHitOnce;
-        assertTrue(dropTargetHitOnceAfterReset.isActive());
-        assertEquals(100,dropTargetHitOnceAfterReset.getScore());
-
-        Target dropTargetHitAHundredTimesBeforeReset = dropTargetWithoutTableHitAHundredTimes;
-        assertFalse(dropTargetHitAHundredTimesBeforeReset.isActive());
-        assertEquals(0,dropTargetHitAHundredTimesBeforeReset.getScore());
+        boolean dropTargetHitOnceAfterReset = dropTargetWithoutTableHitOnce.isActive();
+        boolean dropTargetHitAHundredTimesBeforeReset = dropTargetWithoutTableHitAHundredTimes.isActive();
         dropTargetWithoutTableHitAHundredTimes.resetDropTarget();
-        Target dropTargetHitAHundredTimesAfterReset = dropTargetWithoutTableHitAHundredTimes;
-        assertTrue(dropTargetHitAHundredTimesAfterReset.isActive());
-        assertEquals(100,dropTargetHitAHundredTimesAfterReset.getScore());
+        boolean dropTargetHitAHundredTimesAfterReset = dropTargetWithoutTableHitAHundredTimes.isActive();
+
+        assertTrue(dropTargetNotHitBeforeReset);
+        assertTrue(dropTargetNotHitAfterReset);
+        assertFalse(dropTargetHitOnceBeforeReset);
+        assertTrue(dropTargetHitOnceAfterReset);
+        assertFalse(dropTargetHitAHundredTimesBeforeReset);
+        assertTrue(dropTargetHitAHundredTimesAfterReset);
     }
     @Test
     public void deactivate() {
-        Target dropTargetNotHitBeforeDeactivate = dropTargetWithoutTableNotHit;
-        assertTrue(dropTargetNotHitBeforeDeactivate.isActive());
-        assertEquals(100,dropTargetNotHitBeforeDeactivate.getScore());
+        boolean dropTargetNotHitBeforeDeactivate = dropTargetWithoutTableNotHit.isActive();
         dropTargetWithoutTableNotHit.deactivate();
-        Target dropTargetNotHitAfterDeactivate = dropTargetWithoutTableNotHit;
-        assertFalse(dropTargetNotHitAfterDeactivate.isActive());
-        assertEquals(0,dropTargetNotHitAfterDeactivate.getScore());
-
-        Target dropTargetHitOnceBeforeDeactivate = dropTargetWithoutTableHitOnce;
-        assertFalse(dropTargetHitOnceBeforeDeactivate.isActive());
-        assertEquals(0,dropTargetHitOnceBeforeDeactivate.getScore());
+        boolean dropTargetNotHitAfterDeactivate = dropTargetWithoutTableNotHit.isActive();
+        boolean dropTargetHitOnceBeforeDeactivate = dropTargetWithoutTableHitOnce.isActive();
         dropTargetWithoutTableHitOnce.deactivate();
-        Target dropTargetHitOnceAfterDeactivate = dropTargetWithoutTableHitOnce;
-        assertFalse(dropTargetHitOnceAfterDeactivate.isActive());
-        assertEquals(0,dropTargetHitOnceAfterDeactivate.getScore());
-
-        Target dropTargetHitAHundredTimesBeforeDeactivate = dropTargetWithoutTableHitAHundredTimes;
-        assertFalse(dropTargetHitAHundredTimesBeforeDeactivate.isActive());
-        assertEquals(0,dropTargetHitAHundredTimesBeforeDeactivate.getScore());
+        boolean dropTargetHitOnceAfterDeactivate = dropTargetWithoutTableHitOnce.isActive();
+        boolean dropTargetHitAHundredTimesBeforeDeactivate = dropTargetWithoutTableHitAHundredTimes.isActive();
         dropTargetWithoutTableHitAHundredTimes.deactivate();
-        Target dropTargetHitAHundredTimesAfterDeactivate = dropTargetWithoutTableHitAHundredTimes;
-        assertFalse(dropTargetHitAHundredTimesAfterDeactivate.isActive());
-        assertEquals(0,dropTargetHitAHundredTimesAfterDeactivate.getScore());
+        boolean dropTargetHitAHundredTimesAfterDeactivate = dropTargetWithoutTableHitAHundredTimes.isActive();
+
+        assertTrue(dropTargetNotHitBeforeDeactivate);
+        assertFalse(dropTargetNotHitAfterDeactivate);
+        assertFalse(dropTargetHitOnceBeforeDeactivate);
+        assertFalse(dropTargetHitOnceAfterDeactivate);
+        assertFalse(dropTargetHitAHundredTimesBeforeDeactivate);
+        assertFalse(dropTargetHitAHundredTimesAfterDeactivate);
     }
 
 }

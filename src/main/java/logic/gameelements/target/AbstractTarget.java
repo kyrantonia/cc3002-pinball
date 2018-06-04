@@ -14,8 +14,9 @@ abstract public class AbstractTarget extends AbstractHittable implements Target 
     }
     @Override
     public int hit() {
-        int increment=this.getScore();
+        int increment = 0;
         if (isActive()){
+            increment=this.getScore();
             this.deactivate();
             if(Game.getInstance().getARandomNumber()< this.prob)
                 setChanged();
@@ -27,7 +28,6 @@ abstract public class AbstractTarget extends AbstractHittable implements Target 
 
     public void deactivate(){
         this.isActive = false;
-        this.score = 0;
     }
     @Override
     public boolean isActive() {
@@ -35,7 +35,6 @@ abstract public class AbstractTarget extends AbstractHittable implements Target 
     }
     public void reset(){
         this.isActive = true;
-        this.score = defaultScore;
     }
     public void resetDropTarget() {
     }
