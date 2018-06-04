@@ -1,10 +1,12 @@
 import controller.Game;
+import logic.gameelements.bumper.Bumper;
 import logic.table.PlayableTableWithNoTargets;
 import logic.table.Table;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class TestingNotTargetsTable {
@@ -49,7 +51,13 @@ public class TestingNotTargetsTable {
 
     @Test
     public void upgradeAllBumpers(){
-
+        for (Bumper bumper : playableWithNotTargets.getBumpers()) {
+            assertFalse(bumper.isUpgraded());
+        }
+        playableWithNotTargets.upgradeAllBumpers();
+        for (Bumper bumper : playableWithNotTargets.getBumpers()) {
+            assertTrue(bumper.isUpgraded());
+        }
     }
 
     @Test
