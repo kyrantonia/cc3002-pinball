@@ -1,7 +1,6 @@
 import controller.Game;
 import logic.gameelements.target.Target;
 import logic.table.FullPlayableTable;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,12 +22,9 @@ public class TestingSpotTarget {
     private int gameScoreHitAHundredTimes;
     private int timesTriggerBonusHitAHundredTimes;
 
-    @After
-    public void resetGame(){
-        Game.resetInstance();
-    }
     @Before
     public void setup(){
+        Game.resetInstance();
         game= Game.getInstance();
         game.setRandom(17);
         game.setTable(new FullPlayableTable("mesaConTargets",0,1,3,0));

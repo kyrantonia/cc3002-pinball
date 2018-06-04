@@ -13,6 +13,7 @@ public class TestingFullPlayableTable {
     private Table fullPlayableTable;
     @Before
     public void setup() {
+        Game.resetInstance();
         game=Game.getInstance();
         fullPlayableTable = new FullPlayableTable("fullTable", 3, 0.5, 1, 2);
         game.setTable(fullPlayableTable);

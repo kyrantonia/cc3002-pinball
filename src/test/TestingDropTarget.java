@@ -2,7 +2,6 @@ import controller.Game;
 import logic.gameelements.target.DropTarget;
 import logic.gameelements.target.Target;
 import logic.table.FullPlayableTable;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -45,12 +44,9 @@ public class TestingDropTarget {
     private Target dropTargetWithoutTableHitOnce;
     private Target dropTargetWithoutTableHitAHundredTimes;
 
-    @After
-    public void resetGame(){
-        Game.resetInstance();
-    }
     @BeforeClass
     public static void BeforeClass(){
+        Game.resetInstance();
         game= Game.getInstance();
         game.setRandom(10);
         game.setTable(new FullPlayableTable("mesaConTargets",0,1,0,3));
@@ -92,6 +88,7 @@ public class TestingDropTarget {
     }
     @Before
     public void setup(){
+        Game.resetInstance();
         dropTargetWithoutTableNotHit =new DropTarget();
 
         dropTargetWithoutTableHitOnce=new DropTarget();

@@ -1,7 +1,6 @@
 import controller.Game;
 import logic.gameelements.bumper.Bumper;
 import logic.table.PlayableTableWithNoTargets;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -31,12 +30,10 @@ public class TestingPopBumper {
     private int numberOfBallsHitAHundredTimes;
     private Game game;
 
-    @After
-    public void resetGame(){
-        Game.resetInstance();
-    }
+
     @Before
     public void setup(){
+        Game.resetInstance();
         game= Game.getInstance();
         game.setRandom(17);
         game.setTable(new PlayableTableWithNoTargets("mesaSinTarget",4,1));

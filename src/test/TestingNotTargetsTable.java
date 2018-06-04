@@ -15,6 +15,7 @@ public class TestingNotTargetsTable {
 
     @Before
     public void setup() {
+        Game.resetInstance();
         game=Game.getInstance();
         playableWithNotTargets = new PlayableTableWithNoTargets("notTargetsTable", 2, 0.3);
         game.setTable(playableWithNotTargets);
@@ -37,17 +38,6 @@ public class TestingNotTargetsTable {
         assertEquals(expectedNumberOfDroptTargetsNTT,playableWithNotTargets.getCurrentlyDroppedDropTargets());
     }
 
-    @Test
-    public void  getBumpers(){}
-
-    @Test
-    public void getTargets(){
-    }
-
-    @Test
-    public void resetDropTargets(){
-
-    }
 
     @Test
     public void upgradeAllBumpers(){

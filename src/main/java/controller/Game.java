@@ -6,9 +6,8 @@ import logic.bonus.ExtraBallBonus;
 import logic.bonus.JackPotBonus;
 import logic.gameelements.bumper.Bumper;
 import logic.gameelements.target.Target;
-import logic.table.FullPlayableTable;
-import logic.table.Table;
 import logic.table.NullTable;
+import logic.table.Table;
 
 import java.util.Random;
 
@@ -26,7 +25,9 @@ public class Game {
     private static Game uniqueInstance;
     private Table table;
     private Random random;
+    private boolean gameOver;
     private Game()  {
+        this.gameOver = false;
         this.currentScore = 0;
         this.numberOfBalls = 5;
         table = new NullTable();
@@ -45,14 +46,13 @@ public class Game {
         return number;
     }
     public boolean gameOver() {
-        boolean gameOver=false;
         if (getNumberOfBalls() == 0)
             gameOver=true;
         return gameOver;
     }
 
     public int dropBall(){
-        this.numberOfBalls=this.numberOfBalls-1;
+        this.numberOfBalls=Math.max(this.numberOfBalls-1,0);
         return getNumberOfBalls();
     }
     public Bonus getJackPotBonus() {
@@ -114,21 +114,5 @@ public class Game {
         this.currentScore += increment;
     }
 
-
-    public static void main(String[] args) {
-        Game g=Game.getInstance();
-        g.setTable(new FullPlayableTable("mesa",6,0,1,1));
-        for(Bumper b: g.table.getBumpers()){
-            b.hit();
-        }
-        Bumper bumper=g.table.getBumpers().get(1);
-        for(int i=0;i<6;i++){
-            bumper.hit();
-        }
-        for(Target target: g.table.getTargets()){
-            target.hit();
-        }
-
-    }
 
 }

@@ -12,6 +12,7 @@ public class TestingNullTable {
 
     @Before
     public void setup() {
+        Game.resetInstance();
         game=Game.getInstance();
         nullTable = new NullTable();
         game.setTable(nullTable);
@@ -39,15 +40,6 @@ public class TestingNullTable {
 
     @Test
     public void getTargets(){
-    }
-
-    @Test
-    public void resetDropTargets(){
-
-    }
-
-    @Test
-    public void upgradeAllBumpers(){
     }
 
     @Test
