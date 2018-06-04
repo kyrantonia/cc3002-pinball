@@ -116,7 +116,6 @@ public class TestingDropTarget {
         int expectedTimesTriggerDTBonusHitAHundredTimesLastHit = 0;
         int expectedTimesTriggerDTBonusHitLastNotHit = 1;
 
-        int expectedNotHitScore = 100;
         int expectedNotHitScoreGame = 0;
         int expectedNumberOfBallsNotHit = 5;
         assertEquals(expectedNotHitScoreGame,gameScoreNotHit);
