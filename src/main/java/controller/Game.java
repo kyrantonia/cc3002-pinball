@@ -9,6 +9,8 @@ import logic.gameelements.target.Target;
 import logic.table.NullTable;
 import logic.table.Table;
 
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Random;
 
 /**
@@ -16,7 +18,7 @@ import java.util.Random;
  *
  * @author Juan-Pablo Silva
  */
-public class Game {
+public class Game implements Observer {
     private int currentScore;
     private int numberOfBalls;
     private Bonus JackPotBonus;
@@ -86,6 +88,7 @@ public class Game {
         this.table = table;
         addObserverBumper();
         addObseverTarget();
+        this.table.addObserver();
     }
 
     public void addObserverBumper(){
@@ -115,4 +118,8 @@ public class Game {
     }
 
 
+    @Override
+    public void update(Observable observable, Object o) {
+        increaseScore((Integer)o);
+    }
 }

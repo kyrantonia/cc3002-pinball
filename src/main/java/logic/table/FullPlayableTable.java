@@ -1,7 +1,5 @@
 package logic.table;
 
-import java.util.Observable;
-
 public class FullPlayableTable extends AbstractTable {
     public FullPlayableTable(String name, int numberOfBumpers, double prob, int numberOfSpotTargets, int numberOfDropTargets) {
         super(name, numberOfBumpers, prob, numberOfSpotTargets, numberOfDropTargets);
@@ -9,6 +7,7 @@ public class FullPlayableTable extends AbstractTable {
         targets=hittableFactory.createTargets(getNumberOfSpotTargets(),getNumberOfDropTargets());
         isPlayable=true;
     }
+
 
 
 }

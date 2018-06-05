@@ -65,4 +65,8 @@ public interface Table extends Observer {
     boolean isPlayableTable();
 
     void increaseCurrentlyDroppedDropTargets(int increase);
+
+    void addObserver();
+
+    int remainingHitsToDropTargetBonus();
 }

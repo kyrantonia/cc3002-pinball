@@ -1,12 +1,6 @@
 package logic.bonus;
 
 import controller.Game;
-import logic.table.AbstractTable;
-import logic.table.Table;
-import logic.table.Visitor;
-
-import java.util.Observable;
-import java.util.Observer;
 
 /**
  * Interface that represents a bonus object.
@@ -30,6 +24,4 @@ public interface Bonus  {
      * @param game the game controller object
      */
     void trigger(Game game);
-    public void accept(Visitor visitor);
-
 }

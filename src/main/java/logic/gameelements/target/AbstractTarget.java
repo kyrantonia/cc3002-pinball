@@ -17,12 +17,13 @@ abstract public class AbstractTarget extends AbstractHittable implements Target 
         int increment = 0;
         if (isActive()){
             increment=this.getScore();
+            setChanged();
+            notifyObservers(this);
             this.deactivate();
             if(Game.getInstance().getARandomNumber()< this.prob)
                 setChanged();
                 notifyObservers(getBonus());
         }
-        Game.getInstance().increaseScore(increment);
         return increment;
     }
 

@@ -1,20 +1,22 @@
 package logic.table;
 
 import controller.Game;
-import logic.bonus.Bonus;
+import logic.Notification;
 import logic.bonus.DropTargetBonus;
 import logic.bonus.ExtraBallBonus;
 import logic.bonus.JackPotBonus;
 import logic.gameelements.ConcreteHittableFactory;
+import logic.gameelements.Hittable;
 import logic.gameelements.HittableFactory;
 import logic.gameelements.bumper.Bumper;
 import logic.gameelements.target.DropTarget;
 import logic.gameelements.target.Target;
-import java.util.Observable;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
-public abstract class AbstractTable implements Table,Visitor {
+public abstract class AbstractTable extends Observable implements Table,Visitor {
     private boolean activeDropTargetBonus;
     ArrayList<Bumper> bumpers;
     ArrayList<Target> targets;
@@ -100,10 +102,7 @@ public abstract class AbstractTable implements Table,Visitor {
     }
     @Override
     public void update(Observable observable, Object o) {
-        //System.out.println("me notificaron soy table "+o+" "+observable);
-        ((Bonus)o).accept(this);
-        //setChanged();
-        //notifyObservers();
+        ((Notification)o).accept(this);
     }
 
     @Override
@@ -127,6 +126,14 @@ public abstract class AbstractTable implements Table,Visitor {
     @Override
     public void visitJackPotBonus(JackPotBonus jackPotBonus) {
             jackPotBonus.trigger(Game.getInstance());
+    }
+    public void visitHittable(Hittable hittable){
+        int increment=hittable.getScore();
+        setChanged();
+        notifyObservers(increment);
+    }
+    public void addObserver() {
+        this.addObserver(Game.getInstance());
     }
 
 }

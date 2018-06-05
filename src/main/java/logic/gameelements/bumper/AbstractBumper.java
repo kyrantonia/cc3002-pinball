@@ -25,7 +25,8 @@ abstract public class AbstractBumper extends AbstractHittable implements Bumper 
             this.upgrade();
         }
         int increment=this.getScore();
-        Game.getInstance().increaseScore(increment);
+        setChanged();
+        notifyObservers(this);
         return increment;
     }
 

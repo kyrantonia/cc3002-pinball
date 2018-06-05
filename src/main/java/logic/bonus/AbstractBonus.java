@@ -1,10 +1,9 @@
 package logic.bonus;
 
-import controller.Game;
-import logic.table.Visitor;
+import logic.Notification;
 
 
-abstract public class AbstractBonus implements Bonus {
+abstract public class AbstractBonus implements Bonus, Notification {
     int timesTriggered;
      AbstractBonus(){
         this.timesTriggered=0;
