@@ -3,6 +3,11 @@ package logic.bonus;
 import controller.Game;
 import logic.table.Visitor;
 
+/**
+ * Se obtiene al golpear a un spotTarget
+ * aumenta el puntaje del juego en cien mil puntos
+ * @author Kyra
+ */
 public class JackPotBonus extends AbstractBonus {
 
     @Override

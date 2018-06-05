@@ -64,9 +64,20 @@ public interface Table extends Observer {
      */
     boolean isPlayableTable();
 
+    /**
+     * Se aumenta en increase la cantidad de los DroptTargets no activos
+     * @param increase Cantidad en la que se aumenta el número de Targets no activos
+     */
     void increaseCurrentlyDroppedDropTargets(int increase);
 
+    /**
+     * Se agrega el observer de la mesa, en este caso el juego
+     */
     void addObserver();
 
+    /**
+     * Se obtiene la cantidad de golpes que faltan para que se active el DropTargetBonus
+     * @return cantidad de golpes que faltan para que se active el DropTargetBonus
+     */
     int remainingHitsToDropTargetBonus();
 }

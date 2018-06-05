@@ -1,5 +1,9 @@
 package logic.table;
 
+/**
+ * Mesa que contiene targets y bumpers
+ * @author Kyra
+ */
 public class FullPlayableTable extends AbstractTable {
     public FullPlayableTable(String name, int numberOfBumpers, double prob, int numberOfSpotTargets, int numberOfDropTargets) {
         super(name, numberOfBumpers, prob, numberOfSpotTargets, numberOfDropTargets);

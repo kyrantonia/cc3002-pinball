@@ -1,7 +1,9 @@
 package logic.table;
 
-import java.util.Observable;
-
+/**
+ * Mesa que no tiene targets
+ * @author Kyra
+ */
 public class PlayableTableWithNoTargets extends AbstractTable {
     public PlayableTableWithNoTargets(String name, int numberOfBumpers, double prob) {
         super(name, numberOfBumpers, prob, 0, 0);

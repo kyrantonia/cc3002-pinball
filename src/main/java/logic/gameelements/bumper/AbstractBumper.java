@@ -3,6 +3,10 @@ package logic.gameelements.bumper;
 import controller.Game;
 import logic.gameelements.AbstractHittable;
 
+/**
+ * Clase abstracta de los bumpers
+ * @author Kyra
+ */
 abstract public class AbstractBumper extends AbstractHittable implements Bumper {
     private int defaultScore;
     private int defaultHitsToUpgrade;

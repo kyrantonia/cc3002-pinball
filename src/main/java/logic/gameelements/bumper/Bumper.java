@@ -34,5 +34,11 @@ public interface Bumper extends Hittable {
      */
     void downgrade();
 
-    void decreaseHitsToUpgrade(int i);
+    /**
+     * Disminuye en decrease la cantidad de golpes que se necesitan
+     * para hacer upgrade a un bumper
+     * @param decrease disminución que se hará a la cantidad de golpes que se necesitan
+     * para hacer upgrade a un bumper
+     */
+    void decreaseHitsToUpgrade(int decrease);
 }

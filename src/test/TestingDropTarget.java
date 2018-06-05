@@ -39,6 +39,11 @@ public class TestingDropTarget {
     private static int timesTriggerEBBonusHitAHundredTimesFirstHit;
     private static int timesTriggerDTBonusHitAHundredTimesFirstHit;
     private static int numberOfBallsHitAHundredTimesFirstHit;
+    private static boolean bumperUpgradeNotHit;
+    private static boolean bumperUpgradeHitOnce;
+    private static boolean bumperUpgradeHitAHundredTimesFirstHit;
+    private static boolean bumperUpgradeHitAHundredTimesLastHit;
+    private static boolean bumperUpgradeHitLastNotHit;
 
     private Target dropTargetWithoutTableNotHit;
     private Target dropTargetWithoutTableHitOnce;
@@ -49,13 +54,13 @@ public class TestingDropTarget {
         Game.resetInstance();
         game= Game.getInstance();
         game.setRandom(10);
-        game.setTable(new FullPlayableTable("mesaConTargets",0,1,0,3));
+        game.setTable(new FullPlayableTable("mesaConTargets",1,1,0,3));
         dropTargetNotHit=game.getTable().getTargets().get(0);
         gameScoreNotHit=game.getCurrentScore();
         timesTriggerEBBonusNotHit = game.getExtraBallBonus().timesTriggered();
         timesTriggerDTBonusNotHit = game.getDropTargetBonus().timesTriggered();
         numberOfBallsNotHit=game.getNumberOfBalls();
-
+        bumperUpgradeNotHit = game.getTable().getBumpers().get(0).isUpgraded();
 
         dropTargetHitOnce = game.getTable().getTargets().get(1);
         scoreDropTargetHitOnce =  dropTargetHitOnce.hit();
@@ -63,6 +68,8 @@ public class TestingDropTarget {
         timesTriggerEBBonusHitOnce=game.getExtraBallBonus().timesTriggered();
         timesTriggerDTBonusHitOnce=game.getDropTargetBonus().timesTriggered();
         numberOfBallsHitOnce=game.getNumberOfBalls();
+        bumperUpgradeHitOnce = game.getTable().getBumpers().get(0).isUpgraded();
+
 
         dropTargetHitAHundredTimes = game.getTable().getTargets().get(2);
         scoreDropTargetHitAHundredTimesFirstHit = dropTargetHitAHundredTimes.hit();
@@ -70,6 +77,7 @@ public class TestingDropTarget {
         timesTriggerEBBonusHitAHundredTimesFirstHit= game.getExtraBallBonus().timesTriggered();
         timesTriggerDTBonusHitAHundredTimesFirstHit= game.getDropTargetBonus().timesTriggered();
         numberOfBallsHitAHundredTimesFirstHit= game.getNumberOfBalls();
+        bumperUpgradeHitAHundredTimesFirstHit = game.getTable().getBumpers().get(0).isUpgraded();
         for(int i=0;i<99;i++){
             dropTargetHitAHundredTimes.hit();
         }
@@ -78,12 +86,15 @@ public class TestingDropTarget {
         timesTriggerEBBonusHitAHundredTimesLastHit =game.getExtraBallBonus().timesTriggered();
         timesTriggerDTBonusHitAHundredTimesLastHit =game.getDropTargetBonus().timesTriggered();
         numberOfBallsHitAHundredTimesLastHit =game.getNumberOfBalls();
+        bumperUpgradeHitAHundredTimesLastHit = game.getTable().getBumpers().get(0).isUpgraded();
 
         scoreHitLastNotHit =dropTargetNotHit.hit();
         gameScoreHitlastNotHit =game.getCurrentScore();
         timesTriggerEBBonusHitLastNotHit =game.getExtraBallBonus().timesTriggered();
         timesTriggerDTBonusHitLastNotHit =game.getDropTargetBonus().timesTriggered();
         numberOfBallsHitLastNotHit =game.getNumberOfBalls();
+        bumperUpgradeHitLastNotHit = game.getTable().getBumpers().get(0).isUpgraded();
+
 
     }
     @Before
@@ -120,7 +131,6 @@ public class TestingDropTarget {
         assertEquals(expectedTimesTriggerEBBonusNotHit,timesTriggerEBBonusNotHit);
         assertEquals(expectedTimesTriggerDTBonusNotHit,timesTriggerDTBonusNotHit);
 
-
         int expectedHitOnceScore = 100;
         int expectedHitOnceScoreGame = 100;
         int expectedNumberOfBallsHitOnce = 5;
@@ -156,6 +166,12 @@ public class TestingDropTarget {
         assertEquals(expectedTimesTriggerEBBonusHitLastNotHit, timesTriggerEBBonusHitLastNotHit);
         assertEquals(expectedTimesTriggerDTBonusHitLastNotHit, timesTriggerDTBonusHitLastNotHit);
         assertEquals(expectedNumberOfBallsHitLastNotHit,numberOfBallsHitLastNotHit);
+
+        assertFalse(bumperUpgradeNotHit);
+        assertFalse(bumperUpgradeHitOnce);
+        assertFalse(bumperUpgradeHitAHundredTimesFirstHit);
+        assertFalse(bumperUpgradeHitAHundredTimesLastHit);
+        assertTrue(bumperUpgradeHitLastNotHit);
 
     }
     @Test

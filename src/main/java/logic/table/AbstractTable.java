@@ -16,6 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
+/**
+ * Clase abstracta de Table
+ * @author Kyra
+ */
 public abstract class AbstractTable extends Observable implements Table,Visitor {
     private boolean activeDropTargetBonus;
     ArrayList<Bumper> bumpers;
@@ -42,12 +46,26 @@ public abstract class AbstractTable extends Observable implements Table,Visitor 
         this.hittableFactory=new ConcreteHittableFactory();
         this.currentlyDroppedDropTargets =0;
     }
+
+    /**
+     * Se deja en cero la cantidad de DropTarget que se han dejado no activas
+     */
     void resetCurrentlyDroppedTargets(){
         this.currentlyDroppedDropTargets =0;
     }
+
+    /**
+     * Se entrega el número de bumpers de la mesa
+     * @return cantidad de bumpers en la mesa
+     */
     int getNumberOfBumpers(){
         return this.numberOfBumpers;
     }
+
+    /**
+     * Se entrega la probabilidad de que un Bumper sea un PopBumper
+     * @return proablidad de que se cree un PopBumper
+     */
     double getProb(){
         return this.prob;
     }

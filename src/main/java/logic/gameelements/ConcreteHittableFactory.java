@@ -10,6 +10,10 @@ import logic.gameelements.target.Target;
 
 import java.util.ArrayList;
 
+/**
+ * Fabrica que genera arreglos de bumpers y targets
+ * @author Kyra
+ */
 public class ConcreteHittableFactory implements HittableFactory {
 
     public ArrayList<Target> createTargets(int numberOfSpotTargets, int numberOfDropTargets) {
