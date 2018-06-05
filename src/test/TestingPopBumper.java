@@ -141,73 +141,30 @@ public class TestingPopBumper {
 
     @Test
     public void testUpgrade(){
-        /*
-         0.0443859375038691
-        0.23973661293649284
-        0.707454821689446
-            0.6594836922590074
-0.858996580616418
-0.003754742582413595
-         */
-        //before Upgrade
-        int expectedNumberOfBallsNotHit = 5;
-        int expectedTimesTriggerBonusNotHit = 0;
-        int expectedNumberOfBallsHitOnce = 5;
-        int expectedTimesTriggerBonusHitOnce = 0;
-        int expectedTimesTriggerBonusHitThreeTimes = 1;
-        int expectedNumberOfBallsHitThreeTimes = 6;
-        int expectedTimesTriggerBonusHitAHundredTimes = 1;
-        int expectedNumberOfBallsHitAHundredTimes =6;
-        //After Upgrade
-        int expectedNumberOfBallsNotHitAfterUpgrade = 6;
-        int expectedTimesTriggerBonusNotHitAfterUpgrade = 1;
-        int expectedNumberOfBallsHitOnceAfterUpgrade = 6;
-        int expectedTimesTriggerBonusHitOnceAfterUpgrade = 1;
-        int expectedTimesTriggerBonusHitThreeTimesAfterUpgrade = 1;
-        int expectedNumberOfBallsHitThreeTimesAfterUpgrade = 6;
-        int expectedTimesTriggerBonusHitAHundredTimesAfterUpgrade = 2;
-        int expectedNumberOfBallsHitAHundredTimesAfterUpgrade =7;
-
         boolean popBumperNotHitBeforeUpgrade=popBumperNotHit.isUpgraded();
         popBumperNotHit.upgrade();
         boolean popBumperNotHitAfterUpgrade=popBumperNotHit.isUpgraded();
         assertFalse(popBumperNotHitBeforeUpgrade);
         assertTrue(popBumperNotHitAfterUpgrade);
-        assertEquals(expectedNumberOfBallsNotHit, numberOfBallsNotHit);
-        assertEquals(expectedTimesTriggerBonusNotHit,timesTriggerBonusNotHit);
-        assertEquals(expectedNumberOfBallsNotHitAfterUpgrade, game.getNumberOfBalls());
-        assertEquals(expectedTimesTriggerBonusNotHitAfterUpgrade,game.getExtraBallBonus().timesTriggered());
 
         boolean popBumperHitOnceBeforeUpgrade=popBumperHitOnce.isUpgraded();
         popBumperHitOnce.upgrade();
         boolean popBumperHitOnceAfterUpgrade=popBumperHitOnce.isUpgraded();
         assertFalse(popBumperHitOnceBeforeUpgrade);
         assertTrue(popBumperHitOnceAfterUpgrade);
-        assertEquals(expectedNumberOfBallsHitOnce, numberOfBallsHitOnce);
-        assertEquals(expectedTimesTriggerBonusHitOnce,timesTriggerBonusHitOnce);
-        assertEquals(expectedNumberOfBallsHitOnceAfterUpgrade, game.getNumberOfBalls());
-        assertEquals(expectedTimesTriggerBonusHitOnceAfterUpgrade,game.getExtraBallBonus().timesTriggered());
 
         boolean popBumperHitThreeTimesBeforeUpgrade=popBumperHitThreeTimes.isUpgraded();
         popBumperHitThreeTimes.upgrade();
         boolean popBumperHitThreeTimesAfterUpgrade=popBumperHitThreeTimes.isUpgraded();
         assertTrue(popBumperHitThreeTimesBeforeUpgrade);
         assertTrue(popBumperHitThreeTimesAfterUpgrade);
-        assertEquals(expectedNumberOfBallsHitThreeTimes, numberOfBallsHitThreeTimes);
-        assertEquals(expectedTimesTriggerBonusHitThreeTimes,timesTriggerBonusHitThreeTimes);
-        assertEquals(expectedNumberOfBallsHitThreeTimesAfterUpgrade, game.getNumberOfBalls());
-        assertEquals(expectedTimesTriggerBonusHitThreeTimesAfterUpgrade,game.getExtraBallBonus().timesTriggered());
 
         boolean popBumperHitAHundredTimesBeforeUpgrade=popBumperHitAHundredTimes.isUpgraded();
         popBumperHitAHundredTimes.upgrade();
         boolean popBumperHitAHundredTimesAfterUpgrade=popBumperHitAHundredTimes.isUpgraded();
         assertTrue(popBumperHitAHundredTimesBeforeUpgrade);
         assertTrue(popBumperHitAHundredTimesAfterUpgrade);
-        assertEquals(expectedNumberOfBallsHitAHundredTimes, numberOfBallsHitAHundredTimes);
-        assertEquals(expectedTimesTriggerBonusHitAHundredTimes,timesTriggerBonusHitAHundredTimes);
-        assertEquals(expectedNumberOfBallsHitAHundredTimesAfterUpgrade, game.getNumberOfBalls());
-        assertEquals(expectedTimesTriggerBonusHitAHundredTimesAfterUpgrade,game.getExtraBallBonus().timesTriggered());
-    }
+        }
 
     @Test
     public void testDowngrade(){

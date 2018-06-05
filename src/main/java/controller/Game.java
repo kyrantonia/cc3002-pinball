@@ -66,7 +66,6 @@ public class Game implements Observer {
     public double getARandomNumber(){
         double number;
         number = this.random.nextDouble();
-        System.out.println(number);
         return number;
     }
 
