@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>logic.gameelements.bumper</OriginalElement>
+  <nodes>
+    <node x="37.25" y="0.0">logic.gameelements.bumper.Bumper</node>
+    <node x="0.0" y="516.0">logic.gameelements.bumper.KickerBumper</node>
+    <node x="37.25" y="191.0">logic.gameelements.bumper.AbstractBumper</node>
+    <node x="171.0" y="516.0">logic.gameelements.bumper.PopBumper</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="logic.gameelements.bumper.KickerBumper" target="logic.gameelements.bumper.AbstractBumper">
+      <point x="0.0" y="-26.0" />
+      <point x="75.5" y="491.0" />
+      <point x="97.75" y="491.0" />
+      <point x="-60.5" y="137.5" />
+    </edge>
+    <edge source="logic.gameelements.bumper.PopBumper" target="logic.gameelements.bumper.AbstractBumper">
+      <point x="0.0" y="-26.0" />
+      <point x="241.0" y="491.0" />
+      <point x="218.75" y="491.0" />
+      <point x="60.5" y="137.5" />
+    </edge>
+    <edge source="logic.gameelements.bumper.AbstractBumper" target="logic.gameelements.bumper.Bumper">
+      <point x="0.0" y="-137.5" />
+      <point x="0.0" y="70.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="125.5" y="419.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

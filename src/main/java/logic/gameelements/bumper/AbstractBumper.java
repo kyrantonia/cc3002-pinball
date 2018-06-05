@@ -27,6 +27,10 @@ abstract public class AbstractBumper extends AbstractHittable implements Bumper 
         decreaseHitsToUpgrade(1);
         if(this.remainingHitsToUpgrade()== 0 && !this.isUpgraded()) {
             this.upgrade();
+            if (Game.getInstance().getARandomNumber()<0.1){
+                setChanged();
+                notifyObservers(getBonus());
+            }
         }
         int increment=this.getScore();
         setChanged();
@@ -50,10 +54,6 @@ abstract public class AbstractBumper extends AbstractHittable implements Bumper 
         score = this.upgradedScore;
         isUpgrade = true;
         this.hitsToUpgrade=0;
-        if (Game.getInstance().getARandomNumber()<0.1){
-            setChanged();
-            notifyObservers(getBonus());
-        }
     }
 
     @Override
