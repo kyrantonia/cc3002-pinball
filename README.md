@@ -40,7 +40,17 @@ hacer trigger a este Bonus, y en caso de que se cumpla llama al método trigger 
 
 ## Cómo correr el programa
 
-Abrir el proyecto en Intellij IDEA, presionar Build Project y finalmente presionar Run.
+Descomprimir el proyecto.
+
+Abrir Intellij IDEA, si se tiene un proyecto abierto cerrarlo. 
+
+Presionar presionar Import Project, seleccionar el proyecto.
+
+Seleccionar "Import project from external model" y Maven. 
+
+Presionar next, hasta llegar a finish, ahí apretar finish y esperar a que se cargue el proyecto.
+
+Para correr los test hacer click derecho en la carpeta java que está dentro de test. Seleccionar "Run All Tests"
 
 ## Otros
 
