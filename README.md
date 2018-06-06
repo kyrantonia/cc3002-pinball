@@ -2,8 +2,10 @@
 ## Descripción del programa
 
 Este programa simula la mecánica del los elementos que componen el juego Pinball.
+
 Pinball es un juego consistente en una mesa que posee elementos que se pueden golpear con una pelota.
 Al momento de golpear los elemntos del juego se puede ganar puntos ya sea por el sólo hecho de bolpearlos o porque se activó un Bonus.
+
 El objetivo del juego es conseguir el mayor puntaje posible golpeando con la pelota los elementos del juego. 
 
 ## Cómo se hizo
