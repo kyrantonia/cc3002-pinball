@@ -16,7 +16,7 @@ de los métodos que estas poseían
 ## Patrones de diseño utilizados
 
 ### Singleton
-Se utilizó para hacer que el juego y sus elementos fueran globales (puntaje actual, bonus, número de bolas, gameOver y random).
+Se utilizó en el jugo con la finalidad de que este pudiera ser instanciado sólo una vez, además, dentro de sus parametros se incluyeron los Bonus para que al llamarlos desde Game estos correspondieran siempre a la misma instancia.
 ### Abstract Factory
 Se utilizó para poder crear los arreglos de targets y bumpers.
 ### Null Pattern
@@ -27,8 +27,8 @@ El juego observa a la mesa, la cual le manda notificaciones cuando debe actualiz
 La mesa observa a los Hittable, los cuales envian un hittable o un bonus como notificación. 
 
 Dado que dependiendo de lo que reciba la mesa como notificación de su observers debe hacer cosas diferentes,
-se implementó un visitor. Para ello, se creó una interfaz viitor que es implementada por AbstractTable y una inetrfaz
-notification es implementada por AbstractHittable y AbstractBonus.
+se implementó un visitor. Para ello, se creó una interfaz visitor que es implementada por AbstractTable y una inetrfaz
+Notification es implementada por AbstractHittable y AbstractBonus.
 
 Si los observer de la mesa le mandan un hittable es para que se aumente el puntaje de Game, 
 con lo que se manda una notificación a Game con la cantidad con la que debe aumentar su puntaje. 
