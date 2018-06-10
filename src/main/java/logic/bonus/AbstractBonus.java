@@ -16,9 +16,6 @@ abstract public class AbstractBonus implements Bonus, Notification {
         return this.timesTriggered;
     }
 
-    /**
-     * Aumento en uno las veces que se ejecuta el método trigger en un bumper
-     */
     public void increaseTimesTriggered(){
         this.timesTriggered += 1;
     }

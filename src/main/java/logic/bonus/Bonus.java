@@ -24,4 +24,9 @@ public interface Bonus  {
      * @param game the game controller object
      */
     void trigger(Game game);
+
+    /**
+     * Aumento en uno las veces que se ejecuta el método trigger en un bumper
+     */
+    void increaseTimesTriggered();
 }
