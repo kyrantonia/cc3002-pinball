@@ -10,7 +10,7 @@ El objetivo del juego es conseguir el mayor puntaje posible golpeando con la pel
 
 ## Cómo se hizo
 
-Tomando como base las interfaces entregadas en la tarea, se implementaron clases abstractas que implemntaran gran parte
+Tomando como base las interfaces entregadas en la tarea, se implementaron clases abstractas que implementan gran parte
 de los métodos que estas poseían
 
 ## Patrones de diseño utilizados
